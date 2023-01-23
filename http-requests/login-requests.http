@@ -1,0 +1,35 @@
+@API = http://localhost:4000/api
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjg2YWIxM2JjMWVhMjNlMDNiNDYxZiIsImlhdCI6MTYzMDc3MTkyNSwiZXhwIjoxNjMwODE1MTI1fQ.UPwdrwt5PTwynq1eGhWj4ruV8IIyvnLJKJcv4UBE0ws
+
+### GET Root
+GET {{API}}
+x-access-token: {{TOKEN}}
+
+### GET Dashboard
+GET {{API}}/dashboard
+x-access-token: {{TOKEN}}
+
+### POST Signin
+POST {{API}}/signin
+Content-Type: application/json
+
+{
+  "email":"test@test.com",
+  "password":"123456"
+}
+
+### POST Signup
+POST {{API}}/signup
+Content-Type: application/json
+
+{
+  "username":"test",
+  "password":"123456",
+  "email":"test@test.com"
+}
+
+### POST Logout
+POST {{API}}/logout
+
+### GET Login
+GET {{API}}/login

@@ -1,0 +1,91 @@
+<div class="col-md-4">
+  <div class="info-box">
+    <span class="info-box-icon"><i class="icon ion-ios-contact"></i></span>
+    <div class="info-box-content">
+      <input hidden type="date" disabled id="fechaVenta" />
+      <input hidden type="text" disabled id="clienteId" value="{{_id}}" />
+      <input hidden type="text" disabled id="clienteTel" value="{{tel}}" />
+      <input
+        hidden
+        type="text"
+        disabled
+        id="clienteMixNombre"
+        value="{{RazonSocial}} {{nombre}}"
+      />
+      <input hidden type="text" disabled id="clienteCuit" value="{{dni}}" />
+      <input
+        hidden
+        type="text"
+        disabled
+        id="clienteDomicilio"
+        value="{{address}} {{localidad}}"
+      />
+      <input hidden type="text" disabled id="clienteCF" value="{{fiscal}}" />
+      <input
+        hidden
+        type="text"
+        disabled
+        id="clienteRS"
+        value="{{RazonSocial}}"
+      />
+      <input
+        hidden
+        type="text"
+        disabled
+        id="clienteObse"
+        value="{{observaciones}}"
+      />
+      <span
+        class="h4 font-weight-bold mb-0"
+        id="nombreCliente"
+        data-id="{{nombre}} - {{RazonSocial}}"
+      >
+        {{nombre}}
+        {{RazonSocial}}</span>
+      <span class="info-box-text">{{fiscal}}</span>
+    </div><!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->
+</div><!-- /.col -->
+<div class="col-md-3">
+  <!-- Info Boxes Style 2 -->
+  <div class="info-box bg-primary">
+    <span class="info-box-icon"><i
+        class="ion ion-ios-pricetag-outline"
+      ></i></span>
+    <div class="info-box-content">
+      <span class="info-box-text">Compras ACUMULADAS</span>
+      <span class="info-box-number"><span id="acumuladas"></span>
+        $</span>
+    </div>
+    <!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->
+</div>
+
+<div class="col-md-3">
+  <div class="info-box bg-warning" id="cta-bg">
+    <span class="info-box-icon"><i class="ion-card"></i></span>
+    <div class="info-box-content">
+      <span class="info-box-text">CUENTA CORRIENTE</span>
+      <span class="info-box-number"><span id="ctacte">{{debe}}</span>
+        $</span>
+    </div>
+    <!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->
+</div>
+
+<div class="col-md-2">
+  <div class="info-box bg-success" id="pago">
+    <span class="info-box-icon"><i class="ion-cash"></i></span>
+    <div class="info-box-content">
+      <span class="info-box-text">
+        <a
+          href="/api/pagos/find/{{_id}}"
+          class="btn btn-sm btn-outline-light"
+        >PAGOS</a>
+      </span>
+    </div><!-- /.info-box-content -->
+  </div><!-- /.info-box -->
+</div>

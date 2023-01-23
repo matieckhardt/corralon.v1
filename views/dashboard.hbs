@@ -1,0 +1,368 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-12">
+
+        <form>
+          <label for="foo">Selecciona una fecha </label>
+          <input type="text" id="foo">
+          <!-- <select class="form-control-sm" aria-label="Default select example" id="year">
+            <option selected> Elija el año </option>
+            <option value="2022"> 2022</option>
+            <option value="2023"> 2023 </option>
+          </select>
+          <select class="form-control-sm" aria-label="Default select example" id="month">
+            <option selected> Elija el Mes</option>
+            <option value="0">Enero </option>
+            <option value="1">Febrero </option>
+            <option value="2">Marzo </option>
+            <option value="3">Abril </option>
+            <option value="4">Marzo </option>
+            <option value="5">Junio </option>
+            <option value="6">Julio </option>
+            <option value="7">Agosto </option>
+            <option value="8">Septiembre </option>
+            <option value="9">Octubre </option>
+            <option value="10">Noviembre </option>
+            <option value="11">Diciembre </option>
+          </select> -->
+          <button type="button" class="btn-sm btn-primary" onclick="changeDate()"> Ir a la fecha</button>
+        </form>
+
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- Cementos Vendidos -->
+      <div class="small-box bg-info" style="min-height:133px">
+        <div class="inner">
+
+          <h3 id="cementoMes">{{Valores.cementos}}</h3>
+          <span id="mes"></span>
+          <p>Cementos Vendidos</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag" style="top:50px"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Total Vendido -->
+    <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-black" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-1">{{Valores.vendidoAño}}</h3>
+          <span id="esteAño"></span>
+          <p>Total Vendido Año</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Comprado Año -->
+    <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-purple" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-2">{{Valores.compradoAño}}</h3>
+          <span id="esteAñoCompras"></span>
+          <p>Total Comprado Año</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+    <!-- Total CompradoMes -->
+    <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-pink" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-3">{{Valores.compradoMes.totalComprado}}</h3>
+          <span id="mesCompras"></span>
+          <p>Total Comprado Mes</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+    <!-- proveedor del año -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-blue" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-4">{{Valores.proveedorAño.totalComprado}}</h3>
+
+          <span>Proveedor del Año:
+            <br />
+            <p id="alorProAño" style="text-transform: capitalize;">
+              {{Valores.proveedorAño.proveedor}}
+            </p>
+          </span>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- cliente Anual -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-green" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-5">{{Valores.clienteAño.totalVendido}}</h3>
+
+          <span>Cliente del Año:
+            <br />
+            <p id="clienteAnual" style="text-transform: capitalize;">
+              {{Valores.clienteAño.cliente}}
+            </p>
+          </span>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+    <!-- producto mas vendido -->
+    <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-danger" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-6" style="text-transform: capitalize;">{{Valores.ranking.0.Cantidad}}</h3>
+          <span id="mateMasVen" style="text-transform: capitalize;">{{Valores.ranking.0.Nombre}}</span>
+          <p>Producto mas Vendido</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Total Vendido Mes -->
+    <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-orange" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-7">{{Valores.vendidoMes}}</h3>
+          <span id="mes2"></span>
+          <p>Total Vendido Mes</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- proveedor del mes -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-purple" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-8">{{Valores.proveedorMes.totalComprado}}</h3>
+
+          <span>Proveedor del Mes:
+            <br />
+            <p id="proveedorMes" style="text-transform: capitalize;">
+              {{Valores.proveedorMes.proveedor}}
+            </p>
+          </span>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- cliente MES -->
+    <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-warning" style="min-height:133px">
+        <div class="inner">
+          <h3 id="card-9">{{Valores.clienteMes.totalVendido}}</h3>
+
+          <span>Cliente del Mes:
+            <br />
+            <p id="clienteMes" style="text-transform: capitalize;">
+              {{Valores.clienteMes.cliente}}
+            </p>
+          </span>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add" style="top:50px"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- -->
+
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-6" id="tabla">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Productos mas Vendidos</h3>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th style="width: 10px">#</th>
+                <th style="width: 330px">Productos</th>
+                <th style="width: 50px">U. Vendidas</th>
+              </tr>
+            </thead>
+            <tbody id="rank">
+
+              {{#each Valores.ranking}}
+              <tr></tr>
+              <td>{{@index}}</td>
+              <td>{{Nombre}}</td>
+              <td>{{Cantidad}}</td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHART JS METODO DE PAGO -->
+    <div class="col-3" id="metodoDePago">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Metodo de Pago</h3>
+        </div>
+        <div class="card-body">
+          <canvas id="metodoPago" width="200" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- CHART JS  TIPO COMPROBANTE -->
+    <div class="col-3" id="tipoComprobante">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Tipo de Comprobante</h3>
+        </div>
+        <div class="card-body">
+          <canvas id="tipoCompro" width="200" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+  </div>
+
+
+  <script src="/plugins/chartjs/Chart.min.js"></script>
+  <script>
+    // Chart Metodo PAGO
+    const metodoPago = async () => {
+      const ctx = document.getElementById("metodoPago");
+      const data = await fetch("/api/dashboard/metodoPago")
+        .then((response) => response.json());
+      const myChart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+
+          labels: ["efectivo", "ctacte", "tarjeta", "cheque", "debito"],
+
+          datasets: [
+            {
+              label: "# of Votes",
+              data: data,
+              backgroundColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    };
+    metodoPago();
+
+  </script>
+  <script>
+    // Chart Tipo Comprobante
+    const tipoCompro = async (tipoCompro) => {
+      const ctx2 = document.getElementById("tipoCompro");
+      const data = await fetch("/api/dashboard/tiposCompro")
+        .then((response) => response.json());
+      const myChart2 = new Chart(ctx2, {
+        type: "pie",
+        data: {
+          labels: ["S/C", "A", "B", "Ticket"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: data,
+              backgroundColor: [
+                "rgba(255, 199, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(155, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderColor: [
+                "rgba(255, 233, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(155, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    };
+    tipoCompro();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
+  <script src="/dist/js/pages/dashboard.js"></script>

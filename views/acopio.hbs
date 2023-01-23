@@ -1,0 +1,204 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Acopios</h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<div hidden>
+  <input type="text" id="acopioId" value='{{_id}}'>
+  <input type="text" id="ventaId" value='{{ventaId}}'>
+  <input type="text" id="clienteId" value='{{clienteId}}'>
+  <input type="text" id="clienteNombre" value='{{cliente}}'>
+  <input type="text" id="clienteCuit" value='{{clienteCuit}}'>
+  <input type="text" id="clienteTel" value='{{clienteTel}}'>
+</div>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="form-horizontal" id="formAcopio">
+          <div class="card">
+            <div class="card-header bg-teal">
+              <h3 class="card-title">Listado de Acopios</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body w-100 table-responsive ">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Material</th>
+                    <th style="width: 70px">Faltante</th>
+                    <th style="width: 100px">Cantidad Retirada</th>
+                    <th style="width: 70px">Todo <input type="checkbox" name="todos" onchange="vaciaAcopio(this)"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each materialesAcopio}}
+                  <tr data-material="{{mercaderia}}" data-cantidad="{{cantidadFaltante}}">
+                    <td style="max-width:200px; overflow-x: hidden">{{mercaderia}}</td>
+                    <td name="faltantes">{{cantidadFaltante}}</td>
+                    <td>
+                      <div class="col">
+                        <input type="number" class="form-control form-control-sm py-0" placeholder="" step="0.01"
+                          value="0" name="retiro" id="retiro{{@index}}" onfocus="this.value=''"
+                          max="{{cantidadFaltante}}">
+                      </div>
+                    </td>
+                    <td style="text-align: center;">
+                      <input type="checkbox" name="checks" id="" onchange="seleccionTotal(this);">
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            <hr>
+            <div class="card-footer">
+              <div class="float-right">
+                <button type="submit" class="btn bg-teal font-weight-bold mr-2" id="submitBtn">
+                  ACTUALIZAR ACOPIO</button>
+                <button type="reset" class="btn btn-default">Cancelar</button>
+              </div>
+            </div>
+            <!-- /.card-footer -->
+          </div>
+        </form>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="card">
+          <div class="card-header bg-teal">
+            <h3 class="card-title">Listado de Retiros</h3>
+          </div>
+          <div class="card-body w-100 table-responsive">
+            <table class="table table-hover text-nowrap">
+              <thead style="text-align: center;">
+                <tr>
+                  <th style="width: 100px">Fecha de retiro</th>
+                  <th>
+                    <span style="display: flex; justify-content: space-between; padding: 0 30px">
+                      <span>Material Retirado</span>
+                      <span>Cantidad Retirada</span>
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each materialesRetirados}}
+                <tr style="text-align: center;">
+                  {{#each this}}
+                  {{#if fechaRetiro}}
+                  <td>
+                    {{fechaRetiro}}
+                  </td>
+                  <td>
+                    {{else}}
+                    {{#if mercaderia}}
+                    {{#if cantidadRetirada}}
+                    <div style="display: flex; justify-content: space-between; padding: 0 70px 0 35px;">
+                      <span style="max-width:200px; overflow-x: hidden">
+                        {{mercaderia}}
+                      </span>
+                      <span>
+                        {{cantidadRetirada}}
+                        /
+                        {{cantidadFaltante}}
+                      </span>
+                    </div>
+                    {{/if}}
+                    {{else}}
+                  </td>
+                  {{/if}}
+                  {{/if}}
+                  {{/each}}
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row (main row) -->
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="modal">Modificar Material</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="formEdit">
+          <input type="text" id="clienteIdEdit" hidden />
+          <div class="form-group row">
+            <label for="nombreEdit" class="col-sm-2 col-form-label">Material</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nombreEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="aliasEdit" class="col-sm-2 col-form-label">Marca</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="aliasEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="telEdit" class="col-sm-2 col-form-label">Precio</label>
+            <div class="col-sm-10">
+              <input type="tel" class="form-control" id="telEdit" maxlength="14" />
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn font-weight-bold btn-warning mr-3" onclick="editarCliente()"
+        data-dismiss="modal">GUARDAR DATOS</button>
+      <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="modalDel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="modalDel"></h5>
+        <input type="text" hidden id="idBorrar" />
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Una vez eliminado el cliente no podrá recuperar la información del
+          mismo.</p>
+        <p>Esta seguro que quiere eliminar el cliente?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn font-weight-bold btn-danger mr-3" type="button" disabled id="borrarBtn" data-dismiss="modal"
+          onclick="eliminarMaterial()">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">ELIMINAR</span>
+        </button>
+        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/dist/js/pages/acopios.js"></script>

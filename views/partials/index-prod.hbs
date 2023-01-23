@@ -1,0 +1,29 @@
+<section class="productos container my-5">
+    <!-- SECCION PRODUCTOS -->
+    <!-- TITULO CON PALABRA "PRODUCTOS" -->
+    <div class="row justify-content-center" id="productos">
+        <div class="wow animate__fadeInLeft animate__delay-2s">
+            <h3 class=""> PRODUCTOS </h3>
+            <hr class="subrayado">
+        </div>
+    </div>
+    <!-- CAJAS CON PRODUCTOS -->
+    <div class="container">
+        <div class="card-deck my-3">
+            <div id="index-prods">
+                {{#each Products}}
+
+                <div class="card caja">
+                    <img loading="lazy" class="card-img-top" src="{{prodUrl}}" alt="Card image cap" />
+                    <div class="card-body text-center">
+                        <h5><span>{{prodInfo}}</span></h5>
+                        <hr class="subrayado2">
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    </div>
+</section>

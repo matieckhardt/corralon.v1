@@ -1,0 +1,7 @@
+<in id="uno"></in>
+<h2 id="dos"></h2>
+<h3 id="tres"></h3>
+<script>
+  fetch('/api/jsons').then(x=>x.json()) .then(datos =>{ console.log(datos)
+  document.getElementById('uno').innerText = datos.h1 })
+</script>

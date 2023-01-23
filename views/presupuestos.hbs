@@ -1,0 +1,58 @@
+<div id='comprobante' class='presupuesto'>
+  <div class='tipofc'>
+    <p>{{tipoFc}}</p>
+  </div>
+  <div class='empresa-rs'>
+    <p>{{empresa.razonSocial}}</p>
+  </div>
+  <div class='empresa-cuit'>
+    <p>20-20392641-4</p>
+  </div>
+  <div class='empresa-domicilio'>
+    <p>{{empresa.domicilio}}</p>
+  </div>
+  <div class='fecha-emision'>
+    <p>{{fechaComp}}</p>
+  </div>
+  <div class='hora-emision' id="horaEmision">
+    <p>{{horaEmision}}</p>
+  </div>
+  <div class='nro-comprobante'>
+    <p>{{comprobanteId}}</p>
+  </div>
+  <div class='fc-validez'>
+    <p>{{fechaValidez}}</p>
+  </div>
+  <div class='cliente-nombre'>
+    <p>RAZON SOCIAL / NOMBRE: {{clienteNombre}}</p>
+  </div>
+  <div class='cliente-tel'>
+    <p>TELEFONO: {{clienteTel}}</p>
+  </div>
+  <div class='cliente-domicilio'>
+    <p>DOMICILIO: {{clienteDomicilio}}</p>
+  </div>
+  <div class='cliente-obse'>
+    <p>OBSERVACIONES: {{clienteObse}}</p>
+  </div>
+  <table class='comprobante-productos'>
+    {{#each productos}}
+    <tr>
+      <td id="cod">cod.</td>
+      <td id="prod">{{mercaderia}}</td>
+      <td id="cant">{{cantidad}}</td>
+      <td id="puni">{{precioLista}}</td>
+      <td id="tot">{{subtotal}}</td>
+    </tr>
+    {{/each}}
+  </table>
+  <div class='subtotal'>
+    <p1>SubTotal: ${{subTotal}}.-</p1>
+  </div>
+  <div class='descuentos'>
+    <p1>Descuentos: ${{descuentos}}.-</p1>
+  </div>
+  <div class='total'>
+    <p1>Total: ${{total}}.-</p1>
+  </div>
+</div>

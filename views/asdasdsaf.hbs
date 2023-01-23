@@ -1,0 +1,114 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Resultados
+        </h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th> Datos</th>
+          <th> Enero</th>
+          <th> Febrero</th>
+          <th> Marzo</th>
+          <th> Abril</th>
+          <th> Mayo</th>
+          <th> Junio</th>
+          <th> Julio</th>
+          <th> Agosto</th>
+          <th> Septiembre</th>
+          <th> Octubre</th>
+          <th> Noviembre</th>
+          <th> Diciembre</th>
+        </tr>
+      </thead>
+      <tbody class="thead-light">
+        <tr>
+          <th>Saldo Inicial</th>
+          {{#each ventas}}
+            <td id="salIni{{@key}}" class="pesos">0</td>
+          {{/each}}
+
+        </tr>
+        <tr>
+          <th>Ventas</th>
+          {{#each ventas}}
+            <td id="ventas{{@key}}" class="pesos">{{this}}</td>
+          {{/each}}
+        </tr>
+        <tr>
+          <th>Bonificaciones</th>
+          {{#each boni}}
+            <td id="boni{{@key}}" class="pesos">{{this}}</td>
+          {{/each}}
+        </tr>
+        <tr>
+          <th>Total Gastos productivos</th>
+          {{#each productivos}}
+            <td id="gasPro{{@key}}" class="pesos">{{this}}</td>
+          {{/each}}
+        </tr>
+
+        <tr>
+          <th>Total variable</th>
+          {{#each ventas}}
+            <td id="totVar{{@key}}" class="pesos"></td>
+          {{/each}}
+        </tr>
+        <tr>
+          <th>Total Gastos no Productivos</th>
+          {{#each noProductivos}}
+            <td id="gasNoPro{{@key}}" class="pesos">{{this}}</td>
+          {{/each}}
+        </tr>
+        <tr>
+          <td>Total</td>
+
+          {{#each ventas}}
+            <td id="total{{@key}}" class="pesos"></td>
+          {{/each}}
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+<script src="/dist/js/pages/resultados.js"></script>
+
+<script>
+  {{#each ventas}}
+    inicial{{@key}}
+    = Number(parseFloat(document.getElementById("salIni{{@key}}").innerText).toFixed(2));
+    ventas{{@key}}
+    = Number(parseFloat(document.getElementById("ventas{{@key}}").innerText).toFixed(2));
+    boni{{@key}}
+    = Number(parseFloat(document.getElementById("boni{{@key}}").innerText).toFixed(2));
+    gasPro{{@key}}
+    = Number(parseFloat(document.getElementById("gasPro{{@key}}").innerText).toFixed(2));
+    gasNoPro{{@key}}
+    = Number(parseFloat(document.getElementById("gasNoPro{{@key}}").innerText).toFixed(2));
+  {{/each}}
+
+  saldoIni();
+
+  {{#each ventas}}
+    document.getElementById("totVar{{@key}}").innerText = totVar{{@key}};
+  {{/each}}
+
+  // Get all the "row_data" elements into an array let cells =
+  Array.prototype.slice.call(document.querySelectorAll(".pesos")); // Loop over
+  the array cells.forEach(function(cell){ // Convert cell data to a number, call
+  .toLocaleString() // on that number and put result back into the cell
+  cell.textContent = (+cell.textContent).toLocaleString('en-US', { style:
+  'currency', currency: 'USD' }); });
+
+</script>

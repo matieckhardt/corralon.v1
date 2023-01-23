@@ -1,0 +1,59 @@
+<div class='content-login'>
+  <section class='content'>
+    <div class='container-fluid pt-5'>
+      <main class='col bg-transparent w-100 d-flex'>
+        <form
+          class='form-signin p-5 bg-gradient-info'
+          id='loginForm'
+          action='/api/signin'
+          method='POST'
+        >
+          <div class='text-center mb-4'>
+            <h2 class='mb-3'>
+              <i class='fa fa-user'></i>
+              LOGIN</h2>
+            <p>
+              Bienvenidos al Login del Sitio
+            </p>
+          </div>
+          <div class='form-label-group'>
+            <input
+              type='text'
+              name='email'
+              id='inputName'
+              class='form-control'
+              placeholder='email'
+              autofocus=''
+              minlength='4'
+              value="{{email}}"
+              required
+            />
+            <label for='inputName'>Nombre de Usuario</label>
+          </div>
+
+          <div class='form-label-group'>
+            <input
+              type='password'
+              name='password'
+              id='inputPassword'
+              class='form-control'
+              placeholder='Password'
+              minlength='1'
+              required
+            />
+            <label for='inputPassword'>Password</label>
+          </div>
+
+          <div class='my-3'>
+            <button
+              class='btn btn-lg btn-outline-light btn-block'
+              type='submit'
+            >Ingresar</button>
+          </div>
+          {{>errors}}
+        </form>
+      </main>
+    </div>
+  </section>
+</div>
+<script src='/dist/js/pages/login.js'></script>

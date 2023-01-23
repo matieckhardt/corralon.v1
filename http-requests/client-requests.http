@@ -1,0 +1,46 @@
+@API = http://localhost:4000/api/clientes
+@TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZjg2YWIxM2JjMWVhMjNlMDNiNDYxZiIsImlhdCI6MTYyNjg5Mjk3NywiZXhwIjoxNjI2OTM2MTc3fQ.MWbfYdHrc-MsG1CzSz0Ndr2di6jt4rEhQiAhXwZCsHo
+
+### GET Clientes.html Root
+GET {{API}}
+x-access-token: {{TOKEN}}
+
+### GET Clients List
+GET {{API}}/list
+x-access-token: {{TOKEN}}
+
+### GET Client
+GET {{API}}/find/61466eb400d0712520c08753
+x-access-token: {{TOKEN}}
+
+### POST Create Client
+POST {{API}}/create
+x-access-token: {{TOKEN}}
+Content-Type: application/json
+
+{
+  "nombre":"Nombre Test",
+  "apellido":"Apellido X",
+  "email":"test@nuevo.com",
+  "tel":"1530304545",
+  "cuil":"20-45645621-9",
+  "fiscal":"Exento",
+  "localidad":"CABA",
+  "address":"nueva calle 555",
+  "dni":"87654321"
+}
+
+### PUT Edit Client
+PUT {{API}}/edit/60f86be5236e3335680f79f3
+x-access-token: {{TOKEN}}
+Content-Type: application/json
+
+{
+  "name":"Cliente Test",
+  "email":"cliente@cliente.com",
+  "tel":"55555555"
+}
+
+### DELETE Client
+DELETE {{API}}/delete/60f890bf964fe33fb47c6a1d
+x-access-token: {{TOKEN}}

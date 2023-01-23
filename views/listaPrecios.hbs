@@ -1,0 +1,154 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-12">
+                <button class="btn btn-primary hidden-print" onclick="window.print();return false;" id="btn-print"><span
+                        class="glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir</button>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="datosCorra">
+    <img src="../img/home/logo.png" style="max-height: 100px; padding-bottom:15px" alt="" />
+    <p>Dirección: Marqués de Avilés 3265 , Hurlingham. | Mail: info@corralonbianchi.com | Telefonos: 4665 - 9111 /
+        4452 1795 | Whatsapp: 11-4160-6426</p>
+
+</div>
+<div class="container fluid grid" id="grid">
+    <!-- Card Hidrofugos -->
+    <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+        <div class="widget-user-header bg-warning">
+            <h3 class="widget-user-username">Hidrofugos</h3>
+        </div>
+        {{#each Precios.Hidrofugos}}
+        <div class="card-footer p-0">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <p href="#" class=" list-corra">
+                        {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                    </p>
+                </li>
+
+            </ul>
+        </div> {{/each}}
+    </div>
+    <!-- Card Ladrillos -->
+    <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+        <div class="widget-user-header bg-warning">
+            <h3 class="widget-user-username">Ladrillos</h3>
+        </div>
+        {{#each Precios.Ladrillos}}
+        <div class="card-footer p-0">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <p href="#" class=" list-corra">
+                        {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                    </p>
+                </li>
+
+            </ul>
+        </div> {{/each}}
+    </div>
+    <!-- Card Caños -->
+    <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+        <div class="widget-user-header bg-warning">
+            <h3 class="widget-user-username">Caños</h3>
+        </div>
+        {{#each Precios.Caños}}
+        <div class="card-footer p-0">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <p href="#" class=" list-corra">
+                        {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                    </p>
+                </li>
+
+            </ul>
+        </div> {{/each}}
+    </div>
+    <!-- Card Bolsas -->
+    <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+        <div class="widget-user-header bg-warning">
+            <h3 class="widget-user-username">Bolsas</h3>
+        </div>
+        {{#each Precios.Bolsas}}
+        <div class="card-footer p-0">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <p href="#" class=" list-corra">
+                        {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                    </p>
+                </li>
+
+            </ul>
+        </div> {{/each}}
+    </div>
+
+
+
+
+
+</div>
+
+<h6 id="pagebreak">Pagina 1 </h6>
+
+<div class="datosCorra2">
+    <img src="../img/home/logo.png" style="max-height: 100px; padding-bottom:15px" alt="" />
+
+    <div class="container fluid grid" id="grid2">
+        <!-- Card Aridos -->
+        <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px" id="aridos">
+            <div class="widget-user-header bg-warning">
+                <h3 class="widget-user-username">Aridos</h3>
+            </div>
+            {{#each Precios.Aridos}}
+            <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <p href="#" class="list-corra">
+                            {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                        </p>
+                    </li>
+
+                </ul>
+            </div> {{/each}}
+        </div>
+        <!-- Card Vigas -->
+        <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+            <div class="widget-user-header bg-warning">
+                <h3 class="widget-user-username">Vigas</h3>
+            </div>
+            {{#each Precios.Vigas}}
+            <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <p href="#" class=" list-corra">
+                            {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                        </p>
+                    </li>
+
+                </ul>
+            </div> {{/each}}
+        </div>
+        <!-- Card Hierros -->
+        <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+            <div class="widget-user-header bg-warning">
+                <h3 class="widget-user-username">Hierros</h3>
+            </div>
+            {{#each Precios.Hierros}}
+            <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <p href="#" class="list-corra">
+                            {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                        </p>
+                    </li>
+
+                </ul>
+            </div> {{/each}}
+        </div>
+
+    </div>
+    <h6 id="pagebreak">Pagina 2 </h6>
+    <script src='/dist/js/masonry.pkgd.min.js'></script>
+    <script src='/dist/js/pages/listaPrecios.js'></script>

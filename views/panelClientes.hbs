@@ -1,0 +1,466 @@
+<!-- Content Header (Page header) -->
+<div class='content-header'>
+    <div class='container-fluid'>
+        <div class='row mb-2'>
+            <div class='col-sm-6'>
+                <h1 class='m-0 text-dark'>Panel Cliente</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class='content'>
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-md-4'>
+                <div class='info-box'>
+                    <span class='info-box-icon'><i class='icon ion-ios-contact'></i></span>
+                    <div class='info-box-content'>
+                        <input hidden type='date' disabled id='fechaVenta' />
+                        <input hidden type='text' disabled id='clienteId' value='{{_id}}' />
+                        <input hidden type='text' disabled id='clienteTel' value='{{tel}}' />
+                        <input hidden type='text' disabled id='clienteMixNombre' value='{{RazonSocial}} {{nombre}}' />
+                        <input hidden type='text' disabled id='clienteCuit' value='{{dni}}' />
+                        <input hidden type='text' disabled id='clienteDomicilio' value='{{address}} {{localidad}}' />
+                        <input hidden type='text' disabled id='clienteCF' value='{{fiscal}}' />
+                        <input hidden type='text' disabled id='clienteRS' value='{{RazonSocial}}' />
+                        <input hidden type='text' disabled id='clienteObse' value='{{observaciones}}' />
+                        <span class='h4 font-weight-bold mb-0' id='nombreCliente'
+                            data-id='{{nombre}} - {{RazonSocial}}'>
+                            {{nombre}}
+                            {{RazonSocial}}</span>
+                        <span class='info-box-text'>{{fiscal}}</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <div class='col-md-3'>
+                <!-- Info Boxes Style 2 -->
+                <div class='info-box bg-primary'>
+                    <span class='info-box-icon'><i class='ion ion-ios-pricetag-outline'></i></span>
+                    <div class='info-box-content'>
+                        <span class='info-box-text'>Compras ACUMULADAS</span>
+                        <span class='info-box-number'><span id='acumuladas'></span>
+                            $</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <div class='col-md-3'>
+                <div class='info-box bg-warning' id='cta-bg'>
+                    <span class='info-box-icon'><i class='ion-card'></i></span>
+                    <div class='info-box-content'>
+                        <span class='info-box-text'>CUENTA CORRIENTE</span>
+                        <span class='info-box-number'><span id='ctacte'>{{debe}}</span>
+                            $</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <div class='col-md-2'>
+                <div class='info-box bg-success' id='pago'>
+                    <span class='info-box-icon'><i class='ion-cash'></i></span>
+                    <div class='info-box-content'>
+                        <span class='info-box-text'>
+                            <a href='/api/pagos/find/{{_id}}' class='btn btn-sm btn-outline-light'>PAGOS</a>
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </div>
+
+        <div class='card card-info'>
+            <div class='card-header'>
+                <h3 class='card-title'>Venta</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class='form-horizontal' id='formVentas' role='form'>
+                <input hidden type='text' disabled id='ventaModId' value='' />
+                <div class='card-body'>
+                    <div id='filaVenta'>
+                        <div name='productoVendido' class='row' id='columnaVenta0'>
+                            <div class='col-sm-3'>
+                                <!-- text input -->
+                                <div class='form-group'>
+                                    <label>Mercaderia</label>
+                                    <select type='text' class='form-control' name='mercaderias' required>
+                                        <option disabled selected hidden></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <!-- text input -->
+                                <div class='form-group'>
+                                    <label>Precio lista</label>
+                                    <div class='input-group'>
+                                        <input type='number' class='form-control' name='precioLista' min='1' value='0'
+                                            readonly />
+                                        <div class='input-group-append'>
+                                            <span class='input-group-text'>$</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <!-- text input -->
+                                <div class='form-group'>
+                                    <label>Precio</label>
+                                    <div class='input-group'>
+                                        <input type='number' class='form-control' name='precioMaterial' min='1'
+                                            value='0' />
+                                        <div class='input-group-append'>
+                                            <span class='input-group-text'>$</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <!-- select -->
+                                <div class='form-group'>
+                                    <label>Cantidad</label>
+                                    <input type='number' step='0.01' class='form-control' name='cantidad' value='1'
+                                        min='0.1' />
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <!-- select -->
+                                <div class='form-group'>
+                                    <label>Subtotal</label>
+                                    <div class='input-group'>
+                                        <input class='form-control' step='0.01' name='subtotal' min='0' value='0'
+                                            readonly />
+                                        <div class='input-group-append'>
+                                            <span class='input-group-text'>$</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type='button' onclick='agregarMercaderia()' class='btn btn-success'><i
+                                class='fa fa-plus'>
+                            </i>
+                            Agregar Mercaderia</button>
+                        <button type='button' onclick='borrarMercaderia()' class='btn btn-danger' id='borrarMerch'
+                            style='display: none;'><i class='fa fa-minus'> </i> Eliminar Mercaderia</button>
+                    </div>
+                    <div class='col-sm-6 float-right mt-4'>
+                        <div class='form-group row'>
+                            <div class='col'>
+                                <label>Tipo de Venta</label>
+                                <!-- text input -->
+                                <div class='custom-control custom-radio'>
+                                    <input class='custom-control-input' type='radio' id='presupuesto' name='tipoVenta'
+                                        checked='' onchange='manejarComprobante(false)' />
+                                    <label for='presupuesto' class='custom-control-label'>Presupuesto</label>
+                                </div>
+                                <div class='custom-control custom-radio'>
+                                    <input class='custom-control-input' type='radio' id='acopio' name='tipoVenta'
+                                        onchange='manejarComprobante(true)' />
+                                    <label for='acopio' class='custom-control-label'>Con acopio</label>
+                                </div>
+                                <div class='custom-control custom-radio'>
+                                    <input class='custom-control-input' type='radio' id='sin-acopio' name='tipoVenta'
+                                        onchange='manejarComprobante(true)' />
+                                    <label for='sin-acopio' class='custom-control-label'>Sin
+                                        acopio</label>
+                                </div>
+                            </div>
+                            <div class='col'>
+                                <!-- text input -->
+                                <div class='form-group'>
+                                    <label>Comprobante</label>
+                                    <select type='text' class='form-control' id='comprobante' name='comprobante'
+                                        disabled required>
+                                        <option selected value='S/C'>S/C</option>
+                                        <option value='A'>Fc A</option>
+                                        <option value='B'>Fc B</option>
+                                        <option value='Ticket'>Ticket</option>
+                                    </select>
+                                </div>
+                                <!-- text input -->
+                                <div class='form-group'>
+                                    <label>Descuento</label>
+                                    <div class='input-group'>
+                                        <input type='number' class='form-control' name='descuento' id='descuento'
+                                            min='0' value='0' required onchange='manejarDescuento(this);' />
+                                        <div class='input-group-append'>
+                                            <span class='input-group-text'>%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- text input -->
+                        <div class='row'>
+                            <div class='form-group col-6'>
+                                <label for='metodo'>Método de Pago
+                                </label>
+                                <select type='text' class='form-control' id='metodo' onchange='evalCheque(this)'
+                                    disabled>
+                                    <option value='efectivo'>Efectivo</option>
+                                    <option value='efectivo'>Transferencia</option>
+                                    <option value='cheque'>Cheque</option>
+                                    <option value='ctacte'>Cuenta Corriente</option>
+                                    <option value='debito'>Tarjeta de Débito</option>
+                                    <option value='tarjeta'>Tarjeta de Crédito</option>
+                                </select>
+                            </div>
+                            <div class='form-group col-6'>
+                                <label>Precio total</label>
+                                <div class='input-group'>
+                                    <input type='number' step='0.01' class='form-control' name='precioTotal'
+                                        id='precioTotal' min='1' value='0' required />
+                                    <div class='input-group-append'>
+                                        <span class='input-group-text'>$</span>
+                                    </div>
+                                </div>
+                                <span class='text-danger' id='comisionNote' hidden>
+                                    comision:
+                                    <input class='text-danger border-0' type='number' disabled id='comision' value='0'
+                                        step='0.01' />
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class='row' id='chequeForm' hidden>
+                            <div class='form-group col-6'>
+                                <label>Número Cheque</label>
+                                <div class='input-group'>
+                                    <input disabled type='number' step='1' class='form-control' name='NumCheque'
+                                        id='NumCheque' required />
+                                </div>
+                            </div>
+                            <div class='form-group col-6'>
+                                <label>Fecha Fc</label>
+                                <input disabled type='date' class='form-control datetimepicker-input'
+                                    data-target='#timepicker' name='FechaCh' value='' id='FechaCh' required />
+                            </div>
+                        </div>
+                        <!-- /.card-footer -->
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class='card-footer'>
+                    <div class='float-right'>
+                        <button type='submit' class='btn btn-info font-weight-bold mr-3' id='btnVenta'>
+                            <i class='fa fa-plus pr-2'></i>
+                            CREAR VENTA</button>
+                        <button type='reset' class='btn btn-default float-right'>Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.card-body -->
+        <div class='row mt-3'>
+            <div class='col-12'>
+                <div class='card card-info'>
+                    <div class='card-header'>
+                        <h3 class='card-title'>Lista de Ventas</h3>
+                        <div class='card-tools'>
+                            <button type='button' class='btn btn-tool' data-card-widget='card-refresh'
+                                data-source='/api/ventas/find/{{id}}' data-source-selector='#card-refresh-content'
+                                data-load-on-init='false'><i class='fas fa-sync-alt'></i></button>
+                            <button type='button' class='btn btn-tool' data-card-widget='collapse'><i
+                                    class='fas fa-minus'></i></button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class='card-body table-responsive'>
+                        <table class='table table-head-fixed text-nowrap' id='tablaVentasCliente'>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Precio Total</th>
+                                    <th>Presupuesto</th>
+                                    <th>Venta</th>
+                                    <th style='width: 50px'>Comprobante</th>
+                                    <th style='width: 50px'>Remitos</th>
+                                    <th>Estado</th>
+                                    <th>Acopio</th>
+                                    <th style='width: 100px;'>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <div class='col-md-6 col-12' hidden>
+                <div class='card card-success'>
+                    <div class='card-header'>
+                        <h3 class='card-title'>Lista de Acopios</h3>
+                        <div class='card-tools'>
+                            <button type='button' class='btn btn-tool' data-card-widget='card-refresh'
+                                data-source='/api/acopio/list/{{id}}' data-source-selector='#card-refresh-content'
+                                data-load-on-init='false'><i class='fas fa-sync-alt'></i></button>
+                            <button type='button' class='btn btn-tool' data-card-widget='collapse'><i
+                                    class='fas fa-minus'></i></button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class='card-body table-responsive'>
+                        <table class='table table-head-fixed text-nowrap' id='tablaAcopios'>
+                            <thead>
+                                <tr>
+                                    <th style='width: 80px'>Fecha</th>
+                                    <th>Ultimo Retiro</th>
+                                    <th style='width: 100px'>Panel Acopios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Modal -->
+<div class='modal fade' id='modalAprobar' tabindex='-1' role='dialog' aria-labelledby='modalApp' aria-hidden='true'>
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header bg-success'>
+                <h5 class='modal-title' id='modalApp'></h5>
+                <input type='text' hidden id='idComprobante' />
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <form id='modalForm'>
+                <div class='modal-body'>
+                    <div class='row'>
+                        <input type='hidden' name='clienteId' id='clienteId' value={{clienteId}} />
+                        <div class='form-group col-sm-6 col-md-4'>
+                            <label for='metodoDePagoModal'>Método de Pago</label>
+                            <select type='text' class='form-control' id='metodoDePagoModal'
+                                onchange='evalChequeModal(this)' name='metodoDePago'>
+                                <option value='efectivo'>Efectivo</option>
+                                <option value='cheque'>Cheque</option>
+                                <option value='ctacte'>Cuenta Corriente</option>
+                                <option value='tarjeta'>Tarjeta de Débito/Crédito</option>
+                            </select>
+                        </div>
+                        <div class='col'>
+                            <!-- text input -->
+                            <div class='row' id='chequeFormModal' name='chequeFormModal' hidden>
+                                <div class='form-group col-6'>
+                                    <label>Número Cheque</label>
+                                    <div class='input-group'>
+                                        <input disabled type='number' step='1' class='form-control text-right'
+                                            name='numChequeModal' id='numChequeModal' required />
+                                    </div>
+                                </div>
+                                <div class='form-group col-6'>
+                                    <label>Fecha Cheque</label>
+                                    <input disabled type='date' class='form-control datetimepicker-input text-right'
+                                        data-target='#timepicker' name='fechaChequeModal' value='' id='fechaChequeModal'
+                                        required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='form-group col-sm-6 col-md-2'>
+                            <label for='nroComprobante'>Comprobante</label>
+                            <input type='text' class='form-control text-right' id='nroComprobanteModal'
+                                name='nroComprobanteModal' placeholder='Nro Comprobante' value='' disabled />
+                        </div>
+                        <div class='form-group col-sm-6 col-md-2'>
+                            <label for='monto'>Monto</label>
+                            <input type='number' class='form-control text-right' id='montoModal' placeholder=''
+                                name='montoModal' />
+                        </div>
+                        <div class='form-group col-sm-6 col-md-4'>
+                            <label for='stock'>Observaciones</label>
+                            <input type='text' class='form-control text-right' id='observacionesModal'
+                                name='observacionesModal' placeholder='' />
+                        </div>
+                        <div class='col-sm-4'>
+                            <!-- text input -->
+                            <div class='form-group'>
+                                <label>Fecha</label>
+                                <input type='date' class='form-control datetimepicker-input text-right'
+                                    data-target='#timepicker' name='fechaModal' value='' id='fechaModal' required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class='modal-footer'>
+                <button class='btn font-weight-bold btn-success mr-3' type='button' id='aprobarBtn'
+                    onclick='aprobarPagos()'>APROBAR
+                </button>
+                <button type='button' data-dismiss='modal' class='btn btn-default'>Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='modal fade' id='modalBorrar' tabindex='-1' role='dialog' aria-labelledby='modalDel' aria-hidden='true'>
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header bg-danger'>
+                <h5 class='modal-title' id='modalDel'></h5>
+                <input type='text' hidden id='idBorrar' />
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <p>Una vez eliminada la venta no se podrá recuperar la información de la
+                    misma.</p>
+                <p>Esta seguro que quiere eliminar la venta?</p>
+            </div>
+            <div class='modal-footer'>
+                <button class='btn font-weight-bold btn-danger mr-3' type='button' disabled id='borrarBtn'
+                    data-dismiss='modal' onclick='eliminarVenta()'>
+                    <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
+                    <span class='sr-only'>ELIMINAR</span>
+                </button>
+                <button type='button' data-dismiss='modal' class='btn btn-default'>Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class='modal fade' id='modalRemito' tabindex='-1' role='dialog' aria-labelledby='modalRem' aria-hidden='true'>
+    <div class='modal-dialog modal-sm modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header bg-success'>
+                <h5 class='modal-title' id='modalRem'>Remito</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <p>Haga click aqui para acceder al link del remito</p>
+            </div>
+            <div class='modal-footer'>
+                <button class='btn font-weight-bold btn-success mr-3' type='button' id='linkBtn' data-dismiss='modal'>
+                    Ir a Remito
+                    <i class='pl-2 fa fa-receipt'></i>
+                </button>
+                <button type='button' data-dismiss='modal' class='btn btn-default'>Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src='/dist/js/pages/panelClientes.js'></script>

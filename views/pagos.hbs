@@ -1,0 +1,225 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Pagos</h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class='card card-success'>
+      <div class='card-header'>
+        <h3 class='card-title'>Ingresar Pagos</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form class="form-horizontal" id="formPagos">
+        <div class="card-body">
+          <div class="row">
+            <input type="hidden" name="clienteId" id="clienteId" value='{{clienteId}}'>
+            <div class='form-group col-4'>
+              <label for='metodoDePago'>Método de Pago</label>
+              <select type='text' class='form-control' id='metodoDePago' onchange='evalCheque(this)'
+                name="metodoDePago">
+                <option value='efectivo'>Efectivo</option>
+                <option value='cheque'>Cheque</option>
+                <option value='ctacte'>Cuenta Corriente</option>
+                <option value='tarjeta'>Tarjeta de Débito/Crédito</option>
+              </select>
+            </div>
+            <div class='col-8'>
+              <!-- text input -->
+              <div class='row' id='chequeForm' hidden>
+                <div class='form-group col-6'>
+                  <label>Número Cheque</label>
+                  <div class='input-group'>
+                    <input
+                      disabled
+                      type='number'
+                      step='1'
+                      class='form-control'
+                      name='NumCheque'
+                      id='NumCheque'
+                      required
+                    />
+                  </div>
+                </div>
+                <div class='form-group col-6'>
+                  <label>Fecha Cheque</label>
+                  <input
+                    disabled
+                    type='date'
+                    class='form-control datetimepicker-input'
+                    data-target='#timepicker'
+                    name='FechaCheque'
+                    value=''
+                    id='FechaCheque'
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6 col-md-3">
+              <label for="nroComprobante">Numero de Comprobante</label>
+              <input type="text" class="form-control" id="nroComprobante" name="nroComprobante"
+                placeholder="Nro Comprobante" />
+            </div>
+            <div class="form-group col-sm-6 col-md-3">
+              <label for="monto">Monto</label>
+              <input type="number" class="form-control" id="monto" placeholder="monto" name="monto" />              
+              <span class='text-danger' id='comisionNote' hidden>
+                comision:
+                <input
+                  class='text-danger border-0'
+                  type='number'
+                  disabled
+                  hidden
+                  id='comision'
+                  value='0'
+                />
+              </span>
+            </div>
+            <div class="form-group col-sm-6 col-md-4">
+              <label for="stock">Observaciones</label>
+              <input type="text" class="form-control" id="observaciones" name="observaciones" placeholder="" />
+            </div>
+            <div class='col-sm-2'>
+              <!-- text input -->
+              <div class='form-group'>
+                <label>Fecha</label>
+                <input type='date' class='form-control datetimepicker-input' data-target='#timepicker' name='fecha'
+                  value='' id='fecha' required />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <div class="float-right">
+            <button type="button" class="btn bg-teal font-weight-bold mr-2" onclick="altaPago()">
+              Ingresar Pago</button>
+            <button type="reset" class="btn btn-default">Cancelar</button>
+          </div>
+        </div>
+        <!-- /.card-footer -->
+      </form>
+    </div>
+  </div>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class='card card-success'>
+        <div class='card-header'>
+          <h3 class='card-title'>Lista de Pagos</h3>
+          <div class='card-tools'>
+            <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/api/pagos/list"
+              data-source-selector="#card-refresh-content" data-load-on-init="false"><i
+                class="fas fa-sync-alt"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+          <table class="table table-head-fixed text-nowrap" id="tablaPagos">
+            <thead>
+              <tr>
+                <th style="width: 100px">Fecha</th>
+                <th style="width: 70px">Numero de Comprobante</th>
+                <th style="width: 130px">Metodo de Pago</th>
+                <th>Observaciones</th>
+                <th style="width: 130px">Monto</th>
+                <th style="width: 130px">Comision</th>
+                <th style="width: 100px">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+  <!-- /.row (main row) -->
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="modal">Modificar Pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="formEdit">
+          <input type="text" id="clienteIdEdit" hidden />
+          <div class="form-group row">
+            <label for="nombreEdit" class="col-sm-2 col-form-label">Pago</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nombreEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="aliasEdit" class="col-sm-2 col-form-label">Stock</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="aliasEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="telEdit" class="col-sm-2 col-form-label">Precio</label>
+            <div class="col-sm-10">
+              <input type="tel" class="form-control" id="telEdit" maxlength="14" />
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn font-weight-bold btn-warning mr-3" onclick="editarCliente()"
+        data-dismiss="modal">GUARDAR DATOS</button>
+      <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="modalDel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="modalDel"></h5>
+        <input type="text" hidden id="idBorrar" />
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Una vez eliminado el cliente no podrá recuperar la información del
+          mismo.</p>
+        <p>Esta seguro que quiere eliminar el cliente?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn font-weight-bold btn-danger mr-3" type="button" disabled id="borrarBtn" data-dismiss="modal"
+          onclick="eliminarPago()">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">ELIMINAR</span>
+        </button>
+        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/dist/js/pages/pagos.js"></script>

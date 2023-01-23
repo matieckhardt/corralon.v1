@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Corralon |
+    {{#if active.dashboard}}Dashboard
+    {{else}}{{#if active.resultados}}Resultados
+    {{else}}{{#if active.clientes}}Clientes
+    {{else}}{{#if active.panelClientes}}Panel Clientes
+    {{else}}{{#if active.materiales}}Materiales
+    {{else}}{{#if active.listaPrecios}}Lista de Precios
+    {{else}}{{#if active.proveedores}}Proveedores
+    {{else}}{{#if active.productos}}Productos
+    {{else}}{{#if active.compras}}Compras
+    {{else}}{{#if active.ventas}}Ventas
+    {{else}}{{#if active.acopios}}Acopios
+    {{else}}{{#if active.comprobantes}}Comprobantes
+    {{else}}{{#if active.users}}Usuarios
+    {{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}
+  </title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="/plugins/toastr/toastr.min.css" />
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="/plugins/jqvmap/jqvmap.min.css">
+  <!-- ChartJs -->
+  <link rel="stylesheet" href="/plugins/chartjs/Chart.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <!-- Login -->
+  <link rel="stylesheet" href="/dist/css/login.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- FAVICON -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/dist/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/dist/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/dist/img/favicon-16x16.png">
+  <link rel="manifest" href="/dist/img/site.webmanifest">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed ">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button class="btn btn-light border" id="go-back"><i class="fas fa-chevron-left"> </i> VOLVER</button>
+        </li>
+      </ul>
+    </nav>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-warning elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link border-0" role="button" data-widget="pushmenu">
+        <i class="fas fa-snowplow text-yellow px-2" style="opacity: .8"></i>
+        <span class="brand-text font-weight-light">Corralon</span>
+      </a>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="/api/login" class="nav-link {{#if active.dashboard}}active{{/if}}">
+                <i class="fas fa-clipboard-list nav-icon"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/resultados" class="nav-link {{#if active.resultados}}active{{/if}}">
+                <i class="fa-solid fa-chart-line nav-icon"></i>
+                <p>Resultados</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/clientes" class="nav-link {{#if active.clientes}}active{{/if}}">
+                <i class="fas fa-clipboard-list nav-icon"></i>
+                <p>Clientes</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/materiales" class="nav-link {{#if active.materiales}}active{{/if}}">
+                <i class="fas fa-cubes nav-icon"></i>
+                <p>Materiales</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/listaPrecios" class="nav-link {{#if active.listaPrecios}}active{{/if}}">
+                <i class="fas fa-cubes nav-icon"></i>
+                <p>Lista de Precios</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/proveedores" class="nav-link {{#if active.proveedores}}active{{/if}}">
+                <i class="fas fa-archway nav-icon"></i>
+                <p>Proveedores</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/productos" class="nav-link {{#if active.productos}}active{{/if}}">
+                <i class="fas fa-box-open nav-icon"></i>
+                <p>Productos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/compras" class="nav-link {{#if active.compras}}active{{/if}}">
+                <i class="fas fa-shopping-cart nav-icon"></i>
+                <p>Compras</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/ventas" class="nav-link {{#if active.ventas}}active{{/if}}">
+                <i class="fas fa-shipping-fast nav-icon"></i>
+                <p>Venta Rapida</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/acopios" class="nav-link {{#if active.acopios}}active{{/if}}">
+                <i class="fas fa-truck-loading nav-icon"></i>
+                <p>Acopios</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/comprobantes" class="nav-link {{#if active.comprobantes}}active{{/if}}">
+                <i class="fas fa-receipt nav-icon"></i>
+                <p>Comprobantes</p>
+              </a>
+            </li>
+            <li class="nav-item" hidden>
+              <a href="/api/pagos" class="nav-link {{#if active.pagos}}active{{/if}}">
+                <i class="fas fa-receipt nav-icon"></i>
+                <p>Pagos</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/api/users" class="nav-link {{#if active.users}}active{{/if}}">
+                <i class="fas fa-receipt nav-icon"></i>
+                <p>Usuarios</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Main content -->
+
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+      </aside>
+      {{{body}}}
+      <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+      if (window.innerWidth < 1400) {
+        document.body.className += ' sidebar-collapse';
+      }
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="/plugins/moment/moment.min.js"></script>
+    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/adminlte.js"></script>
+    <!-- Toastr -->
+    <script src="/plugins/toastr/toastr.min.js"></script>
+    <!-- Select2 -->
+    <script src="/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+      $('.select2').select2();
+      document.getElementById('go-back').addEventListener('click', () => {
+        history.back();
+      });
+    </script>
+
+
+
+</body>
+
+</html>

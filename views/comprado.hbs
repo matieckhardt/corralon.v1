@@ -1,0 +1,97 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">{{proveedor}}</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div id="datosProveedor" class="container-fluid">
+    <div class="row">
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="Proveedor">Proveedor:</label>
+            <input id="Proveedor" class="form-control" value="{{proveedor}}" />
+        </div>
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="razonSocial">Razon Social:</label>
+            <input id="razonSocial" class="form-control" value="{{razonSocial}}" / />
+        </div>
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="tipoProveedor">Tipo Proveedor:</label>
+            <input id="tipoProveedor" class="form-control" value="{{tipoProveedor}}" />
+        </div>
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="condicionFiscal">Condicion Fiscal:</label>
+            <input id="condicionFiscal" class="form-control" value="{{condicionFiscal}}" />
+        </div>
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="fechaFc">Fecha Factura:</label>
+            <input id="fechaFc" class="form-control" value="{{fechaFc}}" />
+        </div>
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="cuit">Cuit:</label>
+            <input id="cuit" class=" form-control" value="{{cuit}}">
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="comprobante">Comprobante:</label>
+            <input id="comprobante" class="form-control" value="{{comprobante}}" />
+        </div>
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="factura">Factura: </label>
+            <input id="factura" class="form-control" value="{{factura}}" />
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6 col-md-4">
+            <label for="observaciones">Observaciones:</label>
+            <input id="observaciones" class="form-control" value="{{observaciones}}" />
+        </div>
+    </div>
+</div>
+
+<div class='card-body table-responsive'>
+    <table class='table table-head-fixed text-nowrap' id='tablaComprados'>
+        <thead>
+
+            <tr>
+                <th>Producto</th>
+                <th>Marca</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+                <th>IVA</th>
+                <th>Precio Bruto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+            {{#each productos}}
+            <tr>
+                <td>{{nombreProducto}}</td>
+                <td>{{marca}}</td>
+                <td>{{precio}}</td>
+                <td>{{cantidad}}</td>
+                <td>{{subtotal}}</td>
+                <td>{{montoIva}}</td>
+                <td>{{precioBruto}}</td>
+
+            </tr>
+            {{/each}}
+            {{/each}}
+
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="form-group col-sm-6 col-md-4">
+            <span for="ivaTotal">IVA Total:</span>
+            <span id="ivaTotal">{{ivaTotal}}</span>
+            <span for="montoTotal">Monto Total:</span>
+            <span id="montoTotal">{{montoTotal}}</span>
+        </div>
+    </div>

@@ -1,0 +1,385 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Clientes</h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- row -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Registro de Cliente</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form
+            class="form-horizontal"
+            id="formClientes"
+            action="/api/clientes/create"
+            method="POST"
+            onsubmit="setTimeout(function () { uploadTable(); }, 100)"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="nombre">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Nombre del cliente"
+                    required
+                  />
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="RazonSocial">Razon Social</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="RazonSocial"
+                    name="RazonSocial"
+                    placeholder="Razon Social del cliente"
+                  />
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="dni">DNI/CUIT</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="dni"
+                    placeholder="DNI/CUIT"
+                    name="dni"
+                  />
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="E-mail"
+                    name="email"
+                  />
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="tel">Teléfono</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="tel"
+                    placeholder="Teléfono"
+                    maxlength="14"
+                    name="tel"
+                  />
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label>Condicion Fiscal</label>
+                  <select
+                    class="form-control"
+                    name="fiscal"
+                    id="condicionFiscal"
+                  >
+                    <option value="Responsable Inscripto">Resp. Inscripto</option>
+                    <option value="Consumidor Final" selected>Consumidor Final</option>
+                    <option value="IVA Exento">IVA Exento</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="address">Dirección</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    placeholder="Dirección"
+                    name="address"
+                  />
+
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="localidad">Localidad</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="localidad"
+                    placeholder="Localidad"
+                    name="localidad"
+                  />
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                  <label for="observaciones">Observaciones</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    id="observaciones"
+                    cols="60"
+                    rows="3"
+                    name="observaciones"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <div class="float-right">
+                <button
+                  type="submit"
+                  class="btn btn-info font-weight-bold mr-2"
+                >
+                  CREAR CLIENTE</button>
+                <button type="reset" class="btn btn-default">Cancelar</button>
+              </div>
+            </div>
+            <!-- /.card-footer -->
+          </form>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Lista de Clientes</h3>
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-tool"
+                data-card-widget="card-refresh"
+                data-source="/api/clientes/list"
+                data-source-selector="#card-refresh-content"
+                data-load-on-init="false"
+              ><i class="fas fa-sync-alt"></i></button>
+              <button
+                type="button"
+                class="btn btn-tool"
+                data-card-widget="collapse"
+              ><i class="fas fa-minus"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive">
+            <table
+              class="table table-head-fixed text-nowrap"
+              id="tablaClientes"
+            >
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
+                  <th style="width: 100px">Panel Cliente</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+    <!-- /.row (main row) -->
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalEdit"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="modal">Modificar Cliente</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="formEdit">
+          <input type="text" id="clienteIdEdit" hidden />
+          <div class="form-group row">
+            <label
+              for="nombreEdit"
+              class="col-sm-3 col-form-label"
+            >Nombre</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="nombreEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="razonSocialEdit" class="col-sm-3 col-form-label">Razon
+              Social</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="razonSocialEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="dniEdit"
+              class="col-sm-3 col-form-label"
+            >DNI/CUIT</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="dniEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="emailEdit" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="emailEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="telEdit"
+              class="col-sm-3 col-form-label"
+            >Teléfono</label>
+            <div class="col-sm-9">
+              <input
+                type="tel"
+                class="form-control"
+                id="telEdit"
+                maxlength="14"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="condicionFiscalEdit"
+              class="col-sm-3 col-form-label"
+            >Condicion Fiscal</label>
+            <div class="col-sm-9">
+              <select
+                class="form-control"
+                name="fiscal"
+                id="condicionFiscalEdit"
+              >
+                <option value="Responsable Inscripto">Resp. Inscripto</option>
+                <option value="Consumidor Final" selected>Consumidor Final</option>
+                <option value="IVA Exento">IVA Exento</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="dirEdit"
+              class="col-sm-3 col-form-label"
+            >Dirección</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="dirEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="localidadEdit"
+              class="col-sm-3 col-form-label"
+            >Localidad</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="localidadEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="obervacionesEdit"
+              class="col-sm-3 col-form-label"
+            >observaciones</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="observacionesEdit" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn font-weight-bold btn-warning mr-3"
+          onclick="editarCliente()"
+          data-dismiss="modal"
+        >GUARDAR DATOS</button>
+        <button
+          type="button"
+          data-dismiss="modal"
+          class="btn btn-default"
+        >Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalBorrar"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modalDel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="modalDel"></h5>
+        <input type="text" hidden id="idBorrar" />
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Una vez eliminado el cliente no podrá recuperar la información del
+          mismo.</p>
+        <p>Esta seguro que quiere eliminar el cliente?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn font-weight-bold btn-danger mr-3"
+          type="button"
+          disabled
+          id="borrarBtn"
+          data-dismiss="modal"
+          onclick="eliminarCliente()"
+        >
+          <span
+            class="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          <span class="sr-only">ELIMINAR</span>
+        </button>
+        <button
+          type="button"
+          data-dismiss="modal"
+          class="btn btn-default"
+        >Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/dist/js/pages/clientes.js"></script>

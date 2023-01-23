@@ -1,0 +1,150 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Comprobantes</h1>
+      </div><!-- /.col -->
+      <!-- Selector de mess -->
+      <div class="col-xl">
+        <div class="form-cotainer">
+          <label for="yearSelect"> Elija el año a filtrar </label>
+          <select id="yearSelect" class="form-control" onchange="uploadTable()">
+            <option id="2023" value="2023" name="2023"> 2023 </option>
+            <option id="2022" value="2022" name="2022"> 2022 </option>
+          </select>
+          <label for="mesSelect"> Filtar comprobantes por mes</label>
+          <select id="mesSelect" class="form-control" onchange="uploadTable()">
+            <option id="Enero" value="01" name="Enero">Enero</option>
+            <option id="Febrero" value="02" name="Febrero">Febrero</option>
+            <option id="Marzo" value="03" name="Marzo">Marzo</option>
+            <option id="Abril" value="04" name="Abril">Abril</option>
+            <option id="Mayo" value="05" name="Mayo">Mayo</option>
+            <option id="Junio" value="06" name="Junio">Junio</option>
+            <option id="Julio" value="07" name="Julio">Julio</option>
+            <option id="Agosto" value="08" name="Agosto">Agosto</option>
+            <option id="Septiembre" value="09" name="Septiembre">Septiembre</option>
+            <option id="Octubre" value="10" name="Octubre">Octubre</option>
+            <option id="Noviembre" value="11" name="Noviembre">Noviembre</option>
+            <option id="Diciembre" value="12" name="Diciembre">Diciembre</option>
+          </select>
+
+        </div>
+      </div>
+      <!--  FIN Selector de mess -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- row -->
+    <div class="row">
+      <div class="col-12">
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="form-horizontal" id="formComprobantes">
+          <div class="card">
+            <div class="card-header bg-teal">
+              <h3 class="card-title">Listado de Comprobantes</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body w-100 table-responsive">
+              <table class="table table-hover text-nowrap" id='tablaComprobantes'>
+                <thead>
+                  <tr>
+                    <th style="width: 70px">Fecha Venta</th>
+                    <th style="width: 50px">Emitido</th>
+                    <th style="width: 70px">Comprobantes</th>
+                    <th>Cliente</th>
+                    <th>DNI/CUIT</th>
+                    <th style="width: 90px">Precio Total</th>
+                    <th style="width: 90px">Comision</th>
+                    <th style="width: 150px">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-footer -->
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- /.row (main row) -->
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="modal">Modificar Material</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="formEdit">
+          <input type="text" id="clienteIdEdit" hidden />
+          <div class="form-group row">
+            <label for="nombreEdit" class="col-sm-2 col-form-label">Material</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nombreEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="aliasEdit" class="col-sm-2 col-form-label">Marca</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="aliasEdit" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="telEdit" class="col-sm-2 col-form-label">Precio</label>
+            <div class="col-sm-10">
+              <input type="tel" class="form-control" id="telEdit" maxlength="14" />
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn font-weight-bold btn-warning mr-3" onclick="editarCliente()"
+        data-dismiss="modal">GUARDAR DATOS</button>
+      <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="modalDel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger">
+        <h5 class="modal-title" id="modalDel"></h5>
+        <input type="text" hidden id="idBorrar" />
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Una vez eliminado el cliente no podrá recuperar la información del
+          mismo.</p>
+        <p>Esta seguro que quiere eliminar el cliente?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn font-weight-bold btn-danger mr-3" type="button" disabled id="borrarBtn" data-dismiss="modal"
+          onclick="eliminarMaterial()">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span class="sr-only">ELIMINAR</span>
+        </button>
+        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/dist/js/pages/comprobantes.js"></script>

@@ -1,0 +1,133 @@
+<!-- Modal -->
+<div class='modal fade' id='modalAprobar' tabindex='-1' role='dialog' aria-labelledby='modalApp' aria-hidden='true'>
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header bg-success'>
+                <h5 class='modal-title' id='modalApp'></h5>
+                <input type='text' hidden id='idComprobante' />
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <form id='modalForm'>
+                <div class='modal-body'>
+                    <div class='row'>
+                        <input type='hidden' name='clienteId' id='clienteId' value={{clienteId}} />
+
+                        <div class='form-group col-sm-6 col-md-4'>
+                            <label for='metodoDePagoModal'>Método de Pago</label>
+                            <select type='text' class='form-control' id='metodoDePagoModal'
+                                onchange='evalChequeModal(this)' name='metodoDePago'>
+                                <option value='efectivo'>Efectivo</option>
+                                <option value='cheque'>Cheque</option>
+                                <option value='ctacte'>Cuenta Corriente</option>
+                                <option value='tarjeta'>Tarjeta de Débito/Crédito</option>
+                            </select>
+                        </div>
+
+                        <div class='col'>
+                            <!-- text input -->
+                            <div class='row' id='chequeFormModal' name='chequeFormModal' hidden>
+                                <div class='form-group col-6'>
+                                    <label>Número Cheque</label>
+                                    <div class='input-group'>
+                                        <input disabled type='number' step='1' class='form-control text-right'
+                                            name='numChequeModal' id='numChequeModal' required />
+                                    </div>
+                                </div>
+                                <div class='form-group col-6'>
+                                    <label>Fecha Cheque</label>
+                                    <input disabled type='date' class='form-control datetimepicker-input text-right'
+                                        data-target='#timepicker' name='fechaChequeModal' value='' id='fechaChequeModal'
+                                        required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='form-group col-sm-6 col-md-2'>
+                            <label for='nroComprobante'>Comprobante</label>
+                            <input type='text' class='form-control text-right' id='nroComprobanteModal'
+                                name='nroComprobanteModal' placeholder='Nro Comprobante' value='' disabled />
+                        </div>
+                        <div class='form-group col-sm-6 col-md-2'>
+                            <label for='monto'>Monto</label>
+                            <input type='number' class='form-control text-right' id='montoModal' placeholder=''
+                                name='montoModal' />
+                        </div>
+                        <div class='form-group col-sm-6 col-md-4'>
+                            <label for='stock'>Observaciones</label>
+                            <input type='text' class='form-control text-right' id='observacionesModal'
+                                name='observacionesModal' placeholder='' />
+                        </div>
+                        <div class='col-sm-4'>
+                            <!-- text input -->
+                            <div class='form-group'>
+                                <label>Fecha</label>
+                                <input type='date' class='form-control datetimepicker-input text-right'
+                                    data-target='#timepicker' name='fechaModal' value='' id='fechaModal' required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class='modal-footer'>
+                <button class='btn font-weight-bold btn-success mr-3' type='button' id='aprobarBtn'
+                    onclick='aprobarPagos()'>APROBAR
+                </button>
+                <button type='button' data-dismiss='modal' class='btn btn-default'>Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='modal fade' id='modalBorrar' tabindex='-1' role='dialog' aria-labelledby='modalDel' aria-hidden='true'>
+    <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header bg-danger'>
+                <h5 class='modal-title' id='modalDel'></h5>
+                <input type='text' hidden id='idBorrar' />
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <p>Una vez eliminada la venta no se podrá recuperar la información de la
+                    misma.</p>
+                <p>Esta seguro que quiere eliminar la venta?</p>
+            </div>
+            <div class='modal-footer'>
+                <button class='btn font-weight-bold btn-danger mr-3' type='button' disabled id='borrarBtn'
+                    data-dismiss='modal' onclick='eliminarVenta()'>
+                    <span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
+                    <span class='sr-only'>ELIMINAR</span>
+                </button>
+                <button type='button' data-dismiss='modal' class='btn btn-default'>Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class='modal fade' id='modalRemito' tabindex='-1' role='dialog' aria-labelledby='modalRem' aria-hidden='true'>
+    <div class='modal-dialog modal-sm modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header bg-success'>
+                <h5 class='modal-title' id='modalRem'>Remito</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                <p>Haga click aqui para acceder al link del remito</p>
+            </div>
+            <div class='modal-footer'>
+                <button class='btn font-weight-bold btn-success mr-3' type='button' id='linkBtn' data-dismiss='modal'>
+                    Ir a Remito
+                    <i class='pl-2 fa fa-receipt'></i>
+                </button>
+                <button type='button' data-dismiss='modal' class='btn btn-default'>Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

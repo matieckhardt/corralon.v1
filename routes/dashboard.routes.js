@@ -5,6 +5,9 @@ const dashboardCtrl = require("../controllers/dashboard.controller");
 const year = new Date().getFullYear();
 const month = new Date().getMonth() + 1;
 
+router.get("/dashboard", function (req, res) {
+  res.redirect("/api/dashboard" + "/" + year + "/" + month);
+});
 router.get("/dashboard/tiposCompro", dashboardCtrl.tiposCompro);
 router.get("/dashboard/metodoPago", dashboardCtrl.metodoPago);
 router.get("/dashboard/cementos", dashboardCtrl.cementos);

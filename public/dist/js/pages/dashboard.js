@@ -30,3 +30,24 @@ const changeDate = () => {
   window.location.href = "/api/dashboard/" + date;
   console.log("/api/dashboard/" + date);
 };
+
+// ESTE MES
+
+let today = new Date().toLocaleString("en-us", {
+  month: "short",
+  year: "numeric",
+});
+
+const setMes =
+  (document.getElementById("mes").innerText = today) &&
+  (document.getElementById("mes2").innerText = today) &&
+  (document.getElementById("mesCompras").innerText = today);
+
+// ESTE Año
+
+let thisYear = new Date().toLocaleString("en-us", {
+  year: "numeric",
+});
+const setAño =
+  (document.getElementById("esteAño").innerText = thisYear) &&
+  (document.getElementById("esteAñoCompras").innerText = thisYear);

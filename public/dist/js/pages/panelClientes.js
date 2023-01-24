@@ -600,12 +600,6 @@ const uploadTable = async () => {
         columns: [
           {
             data: "fecha",
-            render: function (data, type, row) {
-              if (data === null) return "-";
-              var tdat = data.split("T");
-              var fechaVenta = tdat[0].split("-");
-              return fechaVenta[2] + "-" + fechaVenta[1] + "-" + fechaVenta[0];
-            },
           },
           {
             data: "precioTotal",

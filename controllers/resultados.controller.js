@@ -131,4 +131,223 @@ resultadosCtrl.resultados = async (req, res) => {
   }
 };
 
+resultadosCtrl.cementoMeses = async (req, res) => {
+  try {
+    const today = new Date();
+    const arrayCementos = await Ventas.aggregate([
+      {
+        $match: {
+          createdAt: {
+            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
+            $lt: new Date(today),
+          },
+          presupuesto: false,
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          createdAt: 1,
+          "materialesVendidos.mercaderia": 1,
+          "materialesVendidos.cantidad": 1,
+        },
+      },
+      {
+        $unwind: {
+          path: "$materialesVendidos",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $match: {
+          "materialesVendidos.mercaderia": {
+            $regex: new RegExp("emento"),
+          },
+        },
+      },
+      {
+        $project: {
+          mercaderia: "$materialesVendidos.mercaderia",
+          cantidad: "$materialesVendidos.cantidad",
+          createdAt: "$createdAt",
+        },
+      },
+      {
+        $addFields: {
+          year: {
+            $toString: {
+              $year: "$createdAt",
+            },
+          },
+          month: {
+            $toString: {
+              $month: "$createdAt",
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          yearMonth: {
+            $concat: ["$year", "-", "$month"],
+          },
+        },
+      },
+      {
+        $group: {
+          _id: {
+            $toDate: "$yearMonth",
+          },
+          cantidad: {
+            $sum: {
+              $toInt: "$cantidad",
+            },
+          },
+        },
+      },
+      {
+        $sort: {
+          _id: 1,
+        },
+      },
+      {
+        $addFields: {
+          year: {
+            $toString: {
+              $year: "$_id",
+            },
+          },
+          month: {
+            $toString: {
+              $month: "$_id",
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          yearMonth: {
+            $concat: ["$year", "-", "$month"],
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          yearMonth: 1,
+          cantidad: 1,
+        },
+      },
+    ]);
+    const mapeoCant = arrayCementos.map(({ cantidad }) => cantidad);
+
+    const mapeoYear = arrayCementos.map(({ yearMonth }) => yearMonth);
+
+    let graphData = [];
+    const mapeo = graphData.push(mapeoCant) && graphData.push(mapeoYear);
+
+    return res.json(graphData);
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+};
+
+resultadosCtrl.ventaMeses = async (req, res) => {
+  try {
+    const today = new Date();
+    const arrayVendido = await Ventas.aggregate([
+      {
+        $match: {
+          createdAt: {
+            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
+            $lt: new Date(today),
+          },
+          presupuesto: false,
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          createdAt: 1,
+          precioTotal: 1,
+        },
+      },
+      {
+        $addFields: {
+          year: {
+            $toString: {
+              $year: "$createdAt",
+            },
+          },
+          month: {
+            $toString: {
+              $month: "$createdAt",
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          yearMonth: {
+            $concat: ["$year", "-", "$month"],
+          },
+        },
+      },
+      {
+        $group: {
+          _id: {
+            $toDate: "$yearMonth",
+          },
+          precioTotal: {
+            $sum: "$precioTotal",
+          },
+        },
+      },
+      {
+        $sort: {
+          _id: 1,
+        },
+      },
+      {
+        $addFields: {
+          year: {
+            $toString: {
+              $year: "$_id",
+            },
+          },
+          month: {
+            $toString: {
+              $month: "$_id",
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          yearMonth: {
+            $concat: ["$year", "-", "$month"],
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          yearMonth: 1,
+          precioTotal: 1,
+        },
+      },
+    ]);
+    const mapeoVentas = arrayVendido.map(({ precioTotal }) => precioTotal);
+
+    const mapeoYear = arrayVendido.map(({ yearMonth }) => yearMonth);
+
+    let graphData = [];
+    const mapeo = graphData.push(mapeoVentas) && graphData.push(mapeoYear);
+
+    return res.json(graphData);
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+};
+
 module.exports = resultadosCtrl;

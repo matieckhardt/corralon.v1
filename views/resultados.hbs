@@ -35,46 +35,46 @@
           <tr>
             <th>Saldo Inicial</th>
             {{#each ventas}}
-              <td id="salIni{{@key}}" class="pesos">0</td>
+            <td id="salIni{{@key}}" class="pesos">0</td>
             {{/each}}
 
           </tr>
           <tr>
             <th>Ventas</th>
             {{#each ventas}}
-              <td id="ventas{{@key}}" class="pesos">{{this}}</td>
+            <td id="ventas{{@key}}" class="pesos">{{this}}</td>
             {{/each}}
           </tr>
           <tr>
             <th>Bonificaciones</th>
             {{#each boni}}
-              <td id="boni{{@key}}" class="pesos">{{this}}</td>
+            <td id="boni{{@key}}" class="pesos">{{this}}</td>
             {{/each}}
           </tr>
           <tr>
             <th>Total Gastos productivos</th>
             {{#each gasPro}}
-              <td id="gasPro{{@key}}" class="pesos">{{this}}</td>
+            <td id="gasPro{{@key}}" class="pesos">{{this}}</td>
             {{/each}}
           </tr>
 
           <tr>
             <th>Total variable</th>
             {{#each ventas}}
-              <td id="totVar{{@key}}" class="pesos"></td>
+            <td id="totVar{{@key}}" class="pesos"></td>
             {{/each}}
           </tr>
           <tr>
             <th>Total Gastos no Productivos</th>
             {{#each gasNoPro}}
-              <td id="gasNoPro{{@key}}" class="pesos">{{this}}</td>
+            <td id="gasNoPro{{@key}}" class="pesos">{{this}}</td>
             {{/each}}
           </tr>
           <tr>
             <td id="totales">Total</td>
 
             {{#each ventas}}
-              <td id="total{{@key}}" class="pesos"></td>
+            <td id="total{{@key}}" class="pesos"></td>
             {{/each}}
 
           </tr>
@@ -84,34 +84,57 @@
     </div>
   </div>
 </section>
+<div class="row">
+  <div class="col-4" id="">
+    <div class="card-body">
+      <canvas id="cementosGraph" width="200" height="200"></canvas>
+    </div>
+  </div>
+  <div class="col-4" id="">
+    <div class="card-body">
+      <canvas id="ventasGraph" width="200" height="200"></canvas>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="/plugins/chartjs/Chart.min.js"></script>
 <script src="/dist/js/pages/resultados.js"></script>
 <script>
-  {{#each ventas}}
-    inicial{{@key}}
+  { { #each ventas } }
+    inicial{ { @key } }
     = Number(parseFloat(document.getElementById("salIni{{@key}}").innerText).toFixed(2));
-    ventas{{@key}}
+    ventas{ { @key } }
     = Number(parseFloat(document.getElementById("ventas{{@key}}").innerText).toFixed(2));
-    boni{{@key}}
+    boni{ { @key } }
     = Number(parseFloat(document.getElementById("boni{{@key}}").innerText).toFixed(2));
-    gasPro{{@key}}
+    gasPro{ { @key } }
     = Number(parseFloat(document.getElementById("gasPro{{@key}}").innerText).toFixed(2));
-    inicial{{@key}}
+    inicial{ { @key } }
     = Number(parseFloat(document.getElementById("salIni{{@key}}").innerText).toFixed(2));
-    gasNoPro{{@key}}
+    gasNoPro{ { @key } }
     = Number(parseFloat(document.getElementById("gasNoPro{{@key}}").innerText).toFixed(2));
-  {{/each}}
+  {
+    {
+      /each}}
 
-  saldoIni();
+      saldoIni();
 
-  {{#each ventas}}
-    document.getElementById("totVar{{@key}}").innerText = totVar{{@key}};
-  {{/each}}
+      { { #each ventas } }
+      document.getElementById("totVar{{@key}}").innerText = totVar{ { @key } };
+      {
+        {
+          /each}}
 
 </script>
 
 <script>
-  let cells = Array.prototype.slice.call(document.querySelectorAll(".pesos"));
-  cells.forEach(function(cell){ cell.textContent =
-  (+cell.textContent).toLocaleString('en-US', { style: 'currency', currency:
-  'USD' }); });
+          let cells = Array.prototype.slice.call(document.querySelectorAll(".pesos"));
+          cells.forEach(function (cell) {
+            cell.textContent =
+              (+cell.textContent).toLocaleString('en-US', {
+                style: 'currency', currency:
+                  'USD'
+              });
+          });
 </script>

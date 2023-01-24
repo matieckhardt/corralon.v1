@@ -11,18 +11,6 @@ window.onload = () => {
   }
 };
 
-// document.getElementById("foo").addEventListener("change", () => {
-//   const elem = document.getElementById("foo");
-//   const today = new Date();
-//   const datepicker = new Datepicker(elem, {
-//     // ...options
-//     format: "yyyy/m",
-//     minDate: 365,
-//     maxView: 365,
-//     maxDate: today,
-//   });
-// });
-
 const changeDate = () => {
   const date = document.getElementById("date").value;
   const split = date.split("-");

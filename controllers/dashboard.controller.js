@@ -344,7 +344,7 @@ const dashboardData = async (req, res) => {
       compradoAño: totalComprado[0].totalComprado,
       ranking,
     };
-
+    console.log(data);
     return data;
   } catch (error) {
     return res.status(error).json(error);

@@ -167,10 +167,16 @@ const ventasMeses = async () => {
   const data = await fetch("/api/resultados/ventaMeses").then((response) =>
     response.json()
   );
+  console.log(data[0]);
   const myChart = new Chart(ctx, {
     type: "line",
     data: {
-      labels: data[1],
+      labels: data[1].map((e) =>
+        new Date(e).toLocaleString("es-ar", {
+          month: "short",
+          year: "numeric",
+        })
+      ),
 
       datasets: [
         {
@@ -184,9 +190,19 @@ const ventasMeses = async () => {
     },
     options: {
       scales: {
-        y: {
-          beginAtZero: true,
-        },
+        yAxes: [
+          {
+            ticks: {
+              suggestedMax: 35000000,
+              suggestedMin: 0,
+              fontSize: 12,
+              // Include a dollar sign in the ticks
+              callback: function (value, index, values) {
+                return "$" + value;
+              },
+            },
+          },
+        ],
       },
     },
   });

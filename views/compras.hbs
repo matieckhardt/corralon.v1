@@ -21,50 +21,24 @@
           <div class="card-header">
             <h3 class="card-title">Crear compra</h3>
             <div class="card-tools">
-              <button
-                type="button"
-                class="btn btn-tool"
-                data-card-widget="card-refresh"
-                data-source="clientes.html"
-                data-source-selector="#card-refresh-content"
-                data-load-on-init="false"
-              ><i class="fas fa-sync-alt"></i></button>
-              <button
-                type="button"
-                class="btn btn-tool"
-                data-card-widget="collapse"
-              ><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="clientes.html"
+                data-source-selector="#card-refresh-content" data-load-on-init="false"><i
+                  class="fas fa-sync-alt"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                  class="fas fa-minus"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <form role="form" id="formCompras">
               <div class="row">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="proveedorId"
-                  hidden
-                  readonly
-                />
-                <input
-                  type="text"
-                  class="form-control"
-                  id="cuit"
-                  hidden
-                  readonly
-                />
+                <input type="text" class="form-control" id="proveedorId" hidden readonly />
+                <input type="text" class="form-control" id="cuit" hidden readonly />
                 <div class="col-sm-2">
                   <!-- text input -->
-                  <div class="form-group">
+                  <div class="form-group ">
                     <label>Seleccione el Proveedor</label>
-                    <select
-                      type="text"
-                      class="form-control"
-                      id="listaProveedores"
-                      name="proveedor"
-                      required
-                    >
+                    <select type="text" class="form-control" id="listaProveedores" name="proveedor" required>
                       <option disabled selected hidden></option>
                     </select>
                   </div>
@@ -73,49 +47,28 @@
                   <!-- text input -->
                   <div class="form-group">
                     <label>Razón Social</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="razonSocial"
-                      readonly
-                    />
+                    <input type="text" class="form-control" id="razonSocial" readonly />
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <!-- text input -->
                   <div class="form-group">
                     <label>Condición Fiscal</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="condicion"
-                      readonly
-                    />
+                    <input type="text" class="form-control" id="condicion" readonly />
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <!-- text input -->
                   <div class="form-group">
                     <label>Tipo</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="tipo"
-                      readonly
-                    />
+                    <input type="text" class="form-control" id="tipo" readonly />
                   </div>
                 </div>
                 <div class="col-sm-1">
                   <!-- text input -->
                   <div class="form-group">
                     <label>Comprobante</label>
-                    <select
-                      type="text"
-                      class="form-control"
-                      id="comprobante"
-                      name="comprobante"
-                      required
-                    >
+                    <select type="text" class="form-control" id="comprobante" name="comprobante" required>
                       <option disabled selected hidden></option>
                       <option value="Fc A">Fc A</option>
                       <option value="Fc C">Fc C</option>
@@ -128,28 +81,15 @@
                   <!-- text input -->
                   <div class="form-group">
                     <label>N° Factura</label>
-                    <input
-                      type="text"
-                      class="form-control text-right"
-                      value="0"
-                      id="numFc"
-                      name="factura"
-                    />
+                    <input type="text" class="form-control text-right" value="0" id="numFc" name="factura" />
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <!-- text input -->
                   <div class="form-group">
                     <label>Fecha Fc</label>
-                    <input
-                      type="date"
-                      class="form-control datetimepicker-input"
-                      data-target="#timepicker"
-                      name="fechaFc"
-                      value=""
-                      id="fechaFc"
-                      required
-                    />
+                    <input type="date" class="form-control datetimepicker-input" data-target="#timepicker"
+                      name="fechaFc" value="" id="fechaFc" required />
                   </div>
                 </div>
               </div>
@@ -159,13 +99,7 @@
                     <!-- text input -->
                     <div class="form-group">
                       <label>Producto</label>
-                      <select
-                        type="text"
-                        class="form-control"
-                        name="listaProductos"
-                        id="listaProductos"
-                        required
-                      >
+                      <select type="text" class="form-control" name="listaProductos" id="listaProductos" required>
                         <option disabled selected hidden></option>
                       </select>
                     </div>
@@ -174,12 +108,7 @@
                     <!-- text input -->
                     <div class="form-group">
                       <label>Marca</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="marca"
-                        readonly
-                      />
+                      <input type="text" class="form-control" id="marca" readonly />
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -187,14 +116,7 @@
                     <div class="form-group">
                       <label>Precio unit.</label>
                       <div class="input-group">
-                        <input
-                          type="number"
-                          step="any"
-                          class="form-control text-right"
-                          min="0"
-                          id="precio"
-                          required
-                        />
+                        <input type="number" step="any" class="form-control text-right" min="0" id="precio" required />
                         <div class="input-group-append">
                           <span class="input-group-text">$</span>
                         </div>
@@ -206,13 +128,7 @@
                     <div class="form-group">
                       <label>Guardar Precio unit.?</label>
                       <div class="input-group">
-                        <select
-                          type="text"
-                          class="form-control text-right"
-                          value=""
-                          id="guardarPrecio"
-                          required
-                        >
+                        <select type="text" class="form-control text-right" value="" id="guardarPrecio" required>
                           <option selected value="No">NO</option>
                           <option value="Si">SI</option>
                         </select>
@@ -223,16 +139,8 @@
                     <!-- text input -->
                     <div class="form-group">
                       <label>Cantidad</label>
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control text-right"
-                        min="1"
-                        value="1"
-                        name="cantidad"
-                        id="cantidad"
-                        required
-                      />
+                      <input type="number" step="any" class="form-control text-right" min="1" value="1" name="cantidad"
+                        id="cantidad" required />
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -240,13 +148,7 @@
                     <div class="form-group">
                       <label>IVA %</label>
                       <div class="input-group">
-                        <select
-                          type="text"
-                          class="form-control text-right"
-                          value=""
-                          id="iva"
-                          required
-                        >
+                        <select type="text" class="form-control text-right" value="" id="iva" required>
                           <option disabled selected hidden></option>
                         </select>
                       </div>
@@ -257,15 +159,8 @@
                     <div class="form-group">
                       <label>IVA $ Unit.</label>
                       <div class="input-group">
-                        <input
-                          type="number"
-                          step="any"
-                          class="form-control text-right"
-                          value="0"
-                          min="0"
-                          id="ivaPesos"
-                          readonly
-                        />
+                        <input type="number" step="any" class="form-control text-right" value="0" min="0" id="ivaPesos"
+                          readonly />
                         <div class="input-group-append">
                           <span class="input-group-text">$</span>
                         </div>
@@ -277,15 +172,8 @@
                     <div class="form-group">
                       <label>Precio Unitario Bruto</label>
                       <div class="input-group">
-                        <input
-                          type="number"
-                          step="any"
-                          class="form-control text-right"
-                          value="0"
-                          min="0"
-                          id="precioBruto"
-                          readonly
-                        />
+                        <input type="number" step="any" class="form-control text-right" value="0" min="0"
+                          id="precioBruto" readonly />
                         <div class="input-group-append">
                           <span class="input-group-text">$</span>
                         </div>
@@ -296,51 +184,25 @@
                     <!-- text input -->
                     <div class="form-group">
                       <label>Subtotal</label>
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control text-right"
-                        placeholder=""
-                        value="0"
-                        min="0"
-                        id="subtotal"
-                        readonly
-                      />
+                      <input type="number" step="any" class="form-control text-right" placeholder="" value="0" min="0"
+                        id="subtotal" readonly />
                     </div>
                   </div>
                 </div>
               </div>
               <div>
-                <button
-                  type="button"
-                  onclick="addProduct()"
-                  class="btn btn-success"
-                ><i class="fa fa-plus"> </i>
+                <button type="button" onclick="addProduct()" class="btn btn-success"><i class="fa fa-plus"> </i>
                   Agregar otro producto</button>
-                <button
-                  type="button"
-                  onclick="deleteProduct()"
-                  class="btn btn-danger"
-                  id="borrarProducto"
-                  style="display: none;"
-                ><i class="fa fa-minus"> </i> Eliminar producto</button>
+                <button type="button" onclick="deleteProduct()" class="btn btn-danger" id="borrarProducto"
+                  style="display: none;"><i class="fa fa-minus"> </i> Eliminar producto</button>
               </div>
               <hr />
               <div class="float-left">
                 <div class="form-group row">
-                  <label
-                    for="observaciones"
-                    class="col-sm-5 col-form-label"
-                  >Observaciones:</label>
+                  <label for="observaciones" class="col-sm-5 col-form-label">Observaciones:</label>
                   <div class="col-sm-7">
                     <div class="input-group">
-                      <textarea
-                        type="text"
-                        class="form-control"
-                        id="observaciones"
-                        cols="60"
-                        rows="3"
-                      ></textarea>
+                      <textarea type="text" class="form-control" id="observaciones" cols="60" rows="3"></textarea>
                     </div>
                   </div>
                 </div>
@@ -351,16 +213,8 @@
                     Total:</label>
                   <div class="col-sm-7">
                     <div class="input-group">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control text-right"
-                        id="ivaTotal"
-                        value="0"
-                        min="0"
-                        readonly
-                        required
-                      />
+                      <input type="number" step="any" class="form-control text-right" id="ivaTotal" value="0" min="0"
+                        readonly required />
                       <div class="input-group-append">
                         <span class="input-group-text">$</span>
                       </div>
@@ -372,32 +226,17 @@
                     Total:</label>
                   <div class="col-sm-7">
                     <div class="input-group">
-                      <input
-                        type="number"
-                        step="any"
-                        class="form-control text-right"
-                        id="montoTotal"
-                        value="0"
-                        min="0"
-                        readonly
-                        required
-                      />
+                      <input type="number" step="any" class="form-control text-right" id="montoTotal" value="0" min="0"
+                        readonly required />
                       <div class="input-group-append">
                         <span class="input-group-text">$</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  class="btn font-weight-bold btn-warning mr-3"
-                  id="submitBtn"
-                >INGRESAR COMPRA</button>
-                <button
-                  type="reset"
-                  class="btn btn-default"
-                  id="cancelar"
-                >Cancelar</button>
+                <button type="submit" class="btn font-weight-bold btn-warning mr-3" id="submitBtn">INGRESAR
+                  COMPRA</button>
+                <button type="reset" class="btn btn-default" id="cancelar">Cancelar</button>
               </div>
             </form>
           </div>
@@ -406,8 +245,14 @@
         <!-- /.card -->
       </div>
       <!-- Selector de mess -->
-      <div class="col-xl">
-        <div class="form-cotainer">
+      <div class="col-mb">
+        <div class="form-group">
+          <label for="yearSelect"> Elija el año a filtrar </label>
+          <select id="yearSelect" class="form-control" onchange="uploadTable()">
+            <option id="Todos" value="" name="Todos">Todos</option>
+            <option id="2023" value="2023" name="2023"> 2023 </option>
+            <option id="2022" value="2022" name="2022"> 2022 </option>
+          </select>
           <label for="select">Filtar Compras por Mes</label>
           <select id="mesSelect" class="form-control" onchange="uploadTable()">
             <option id="Todos" value="" name="Todos">Todos</option>
@@ -419,22 +264,10 @@
             <option id="Junio" value="06" name="Junio">Junio</option>
             <option id="Julio" value="07" name="Julio">Julio</option>
             <option id="Agosto" value="08" name="Agosto">Agosto</option>
-            <option
-              id="Septiembre"
-              value="09"
-              name="Septiembre"
-            >Septiembre</option>
+            <option id="Septiembre" value="09" name="Septiembre">Septiembre</option>
             <option id="Octubre" value="10" name="Octubre">Octubre</option>
-            <option
-              id="Noviembre"
-              value="11"
-              name="Noviembre"
-            >Noviembre</option>
-            <option
-              id="Diciembre"
-              value="12"
-              name="Diciembre"
-            >Diciembre</option>
+            <option id="Noviembre" value="11" name="Noviembre">Noviembre</option>
+            <option id="Diciembre" value="12" name="Diciembre">Diciembre</option>
           </select>
 
         </div>
@@ -445,19 +278,11 @@
           <div class="card-header">
             <h3 class="card-title">Lista de Compras</h3>
             <div class="card-tools">
-              <button
-                type="button"
-                class="btn btn-tool"
-                data-card-widget="card-refresh"
-                data-source="/api/compras/list"
-                data-source-selector="#card-refresh-content"
-                data-load-on-init="false"
-              ><i class="fas fa-sync-alt"></i></button>
-              <button
-                type="button"
-                class="btn btn-tool"
-                data-card-widget="collapse"
-              ><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/api/compras/list"
+                data-source-selector="#card-refresh-content" data-load-on-init="false"><i
+                  class="fas fa-sync-alt"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                  class="fas fa-minus"></i></button>
             </div>
           </div>
           <!-- /.card-header -->
@@ -497,25 +322,13 @@
 </section>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="modalBorrar"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalDel"
-  aria-hidden="true"
->
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="modalDel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger">
         <h5 class="modal-title" id="modalDel"></h5>
         <input type="text" hidden id="idBorrar" />
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -525,26 +338,12 @@
         <p>Esta seguro que quiere eliminar la compra?</p>
       </div>
       <div class="modal-footer">
-        <button
-          class="btn font-weight-bold btn-danger mr-3"
-          type="button"
-          disabled
-          id="borrarBtn"
-          data-dismiss="modal"
-          onclick="eliminarCompra()"
-        >
-          <span
-            class="spinner-border spinner-border-sm"
-            role="status"
-            aria-hidden="true"
-          ></span>
+        <button class="btn font-weight-bold btn-danger mr-3" type="button" disabled id="borrarBtn" data-dismiss="modal"
+          onclick="eliminarCompra()">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           <span class="sr-only">ELIMINAR</span>
         </button>
-        <button
-          type="button"
-          data-dismiss="modal"
-          class="btn btn-default"
-        >Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-default">Cancelar</button>
       </div>
     </div>
   </div>

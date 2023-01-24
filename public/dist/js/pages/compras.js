@@ -520,22 +520,23 @@ async function listarProductos(nombreProveedor) {
 // carga de la tabla de compras
 
 const uploadTable = () => {
-  fetch("/api/compras/2022-" + document.getElementById("mesSelect").value)
+  const yearFilter = document.getElementById("yearSelect").value;
+  fetch(
+    "/api/compras/" +
+      yearFilter +
+      "-" +
+      document.getElementById("mesSelect").value
+  )
     .then((response) => response.json())
     .then((arrayConObjetos) => {
       $("#tablaCompras").DataTable().clear().destroy();
       $("#tablaCompras").DataTable({
         pageLength: 25,
         data: arrayConObjetos,
+        order: [[0, "desc"]],
         columns: [
           {
             data: "fechaFc",
-            render: function (data, type, row) {
-              if (data === null) return "-";
-              var tdat = data.split("T");
-              var fecha = tdat[0].split("-");
-              return fecha[2] + "-" + fecha[1] + "-" + fecha[0];
-            },
           },
           {
             data: "tipoProveedor",

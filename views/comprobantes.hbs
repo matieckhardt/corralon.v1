@@ -9,12 +9,14 @@
       <div class="col-xl">
         <div class="form-cotainer">
           <label for="yearSelect"> Elija el año a filtrar </label>
-          <select id="yearSelect" class="form-control" onchange="uploadTable()">
+          <select id="yearSelect" class="form-control " onchange="uploadTable()">
+            <option id="Todos" value="" name="Todos">Todos</option>
             <option id="2023" value="2023" name="2023"> 2023 </option>
             <option id="2022" value="2022" name="2022"> 2022 </option>
           </select>
           <label for="mesSelect"> Filtar comprobantes por mes</label>
           <select id="mesSelect" class="form-control" onchange="uploadTable()">
+            <option id="Todos" value="" name="Todos">Todos</option>
             <option id="Enero" value="01" name="Enero">Enero</option>
             <option id="Febrero" value="02" name="Febrero">Febrero</option>
             <option id="Marzo" value="03" name="Marzo">Marzo</option>

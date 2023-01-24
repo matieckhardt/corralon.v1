@@ -6,11 +6,7 @@ const getJsonWebToken = (userData) => {
 };
 
 const getPayloadData = (token) => {
-  try {
-    return jwt.verify(token, secretKey);
-  } catch (error) {
-    return res.redirect("/api/login");
-  }
+  return jwt.verify(token, secretKey);
 };
 
 module.exports = {

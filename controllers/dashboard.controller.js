@@ -17,7 +17,7 @@ const dashboardData = async (req, res) => {
 
   const totalVendido = await Ventas.aggregate([
     {
-      $match: { ...filterYearMonth(year, month), presupuesto: false },
+      $match: { ...filterYearMonth(year), presupuesto: false },
     },
     {
       $group: {

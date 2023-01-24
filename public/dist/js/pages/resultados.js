@@ -132,14 +132,12 @@ const cementoMeses = async () => {
   const myChart = new Chart(ctx, {
     type: "horizontalBar",
     data: {
-      labels: data[1]
-        .reverse()
-        .map((e) =>
-          new Date(e).toLocaleString("es-ar", {
-            month: "short",
-            year: "numeric",
-          })
-        ),
+      labels: data[1].map((e) =>
+        new Date(e).toLocaleString("es-ar", {
+          month: "short",
+          year: "numeric",
+        })
+      ),
 
       datasets: [
         {

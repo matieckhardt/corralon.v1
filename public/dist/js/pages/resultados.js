@@ -122,16 +122,30 @@ const cementoMeses = async () => {
   const data = await fetch("/api/resultados/cementoMeses").then((response) =>
     response.json()
   );
+  console.log(
+    data[1]
+      .reverse()
+      .map((e) =>
+        e.toLocaleString("es-ar", { year: "numeric", month: "short" })
+      )
+  );
   const myChart = new Chart(ctx, {
     type: "horizontalBar",
     data: {
-      labels: data[1].reverse(),
+      labels: data[1]
+        .reverse()
+        .map((e) =>
+          new Date(e).toLocaleString("es-ar", {
+            month: "short",
+            year: "numeric",
+          })
+        ),
 
       datasets: [
         {
           label: "Unidades de Cementos Vendidos",
           data: data[0].reverse(),
-          backgroundColor: "#FFF5DD",
+          backgroundColor: "#FFDB83",
           borderColor: "#FFDB83",
           borderWidth: 1,
         },

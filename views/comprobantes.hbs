@@ -6,31 +6,34 @@
         <h1 class="m-0 text-dark">Comprobantes</h1>
       </div><!-- /.col -->
       <!-- Selector de mess -->
-      <div class="col-xl">
-        <div class="form-cotainer">
-          <label for="yearSelect"> Elija el año a filtrar </label>
-          <select id="yearSelect" class="form-control " onchange="uploadTable()">
-            <option id="Todos" value="" name="Todos">Todos</option>
-            <option id="2023" value="2023" name="2023" selected> 2023 </option>
-            <option id="2022" value="2022" name="2022"> 2022 </option>
-          </select>
-          <label for="mesSelect"> Filtar comprobantes por mes</label>
-          <select id="mesSelect" class="form-control" onchange="uploadTable()">
-            <option id="Todos" value="" name="Todos">Todos</option>
-            <option id="Enero" value="01" name="Enero">Enero</option>
-            <option id="Febrero" value="02" name="Febrero">Febrero</option>
-            <option id="Marzo" value="03" name="Marzo">Marzo</option>
-            <option id="Abril" value="04" name="Abril">Abril</option>
-            <option id="Mayo" value="05" name="Mayo">Mayo</option>
-            <option id="Junio" value="06" name="Junio">Junio</option>
-            <option id="Julio" value="07" name="Julio">Julio</option>
-            <option id="Agosto" value="08" name="Agosto">Agosto</option>
-            <option id="Septiembre" value="09" name="Septiembre">Septiembre</option>
-            <option id="Octubre" value="10" name="Octubre">Octubre</option>
-            <option id="Noviembre" value="11" name="Noviembre">Noviembre</option>
-            <option id="Diciembre" value="12" name="Diciembre">Diciembre</option>
-          </select>
-
+      <div class="form-group cotainer">
+        <div class="row">
+          <div class="col-mb">
+            <label for="yearSelect"> Elija el año </label>
+            <select id="yearSelect" class="form-control " onchange="uploadTable()">
+              <option id="Todos" value="" name="Todos">Todos</option>
+              <option id="2023" value="2023" name="2023" selected> 2023 </option>
+              <option id="2022" value="2022" name="2022"> 2022 </option>
+            </select>
+          </div>
+          <div class="col-mb">
+            <label for="mesSelect"> Elija el mes</label>
+            <select id="mesSelect" class="form-control" onchange="uploadTable()">
+              <option id="Todos" value="" name="Todos">Todos</option>
+              <option id="Enero" value="01" name="Enero">Enero</option>
+              <option id="Febrero" value="02" name="Febrero">Febrero</option>
+              <option id="Marzo" value="03" name="Marzo">Marzo</option>
+              <option id="Abril" value="04" name="Abril">Abril</option>
+              <option id="Mayo" value="05" name="Mayo">Mayo</option>
+              <option id="Junio" value="06" name="Junio">Junio</option>
+              <option id="Julio" value="07" name="Julio">Julio</option>
+              <option id="Agosto" value="08" name="Agosto">Agosto</option>
+              <option id="Septiembre" value="09" name="Septiembre">Septiembre</option>
+              <option id="Octubre" value="10" name="Octubre">Octubre</option>
+              <option id="Noviembre" value="11" name="Noviembre">Noviembre</option>
+              <option id="Diciembre" value="12" name="Diciembre">Diciembre</option>
+            </select>
+          </div>
         </div>
       </div>
       <!--  FIN Selector de mess -->

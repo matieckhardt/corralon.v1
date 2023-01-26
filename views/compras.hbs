@@ -244,80 +244,83 @@
         </div>
         <!-- /.card -->
       </div>
-      <!-- Selector de mess -->
-      <div class="col-mb">
-        <div class="form-group container">
-          <label for="yearSelect"> Elija el año a filtrar </label>
-          <select id="yearSelect" class="form-control" onchange="uploadTable()">
-            <option id="Todos" value="" name="Todos">Todos</option>
-            <option id="2023" value="2023" name="2023"> 2023 </option>
-            <option id="2022" value="2022" name="2022"> 2022 </option>
-          </select>
-          <label for="select">Filtar Compras por Mes</label>
-          <select id="mesSelect" class="form-control" onchange="uploadTable()">
-            <option id="Todos" value="" name="Todos">Todos</option>
-            <option id="Enero" value="01" name="Enero">Enero</option>
-            <option id="Febrero" value="02" name="Febrero">Febrero</option>
-            <option id="Marzo" value="03" name="Marzo">Marzo</option>
-            <option id="Abril" value="04" name="Abril">Abril</option>
-            <option id="Mayo" value="05" name="Mayo">Mayo</option>
-            <option id="Junio" value="06" name="Junio">Junio</option>
-            <option id="Julio" value="07" name="Julio">Julio</option>
-            <option id="Agosto" value="08" name="Agosto">Agosto</option>
-            <option id="Septiembre" value="09" name="Septiembre">Septiembre</option>
-            <option id="Octubre" value="10" name="Octubre">Octubre</option>
-            <option id="Noviembre" value="11" name="Noviembre">Noviembre</option>
-            <option id="Diciembre" value="12" name="Diciembre">Diciembre</option>
-          </select>
-
-        </div>
-      </div>
-      <!--  FIN Selector de mess -->
-      <div class="col-12">
-        <div class="card card-warning">
-          <div class="card-header">
-            <h3 class="card-title">Lista de Compras</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/api/compras/list"
-                data-source-selector="#card-refresh-content" data-load-on-init="false"><i
-                  class="fas fa-sync-alt"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                  class="fas fa-minus"></i></button>
-            </div>
+      <div class="form-group container">
+        <div class="row">
+          <!-- Selector de mess -->
+          <div class="col-sm-3">
+            <label for="yearSelect"> Elija el año a filtrar </label>
+            <select id="yearSelect" class="form-control" onchange="uploadTable()">
+              <option id="Todos" value="" name="Todos">Todos</option>
+              <option id="2023" value="2023" name="2023"> 2023 </option>
+              <option id="2022" value="2022" name="2022"> 2022 </option>
+            </select>
           </div>
-          <!-- /.card-header -->
-          <div class="card-body table-responsive">
-            <table class="table table-head-fixed text-nowrap" id="tablaCompras">
-              <thead>
-                <tr>
-                  <th style="width: 80px">Fecha Fc</th>
-                  <th style="width: 80px;">Tipo Proveedor</th>
-                  <th>Nombre del Proveedor</th>
-                  <th>CUIT</th>
-                  <th style="width: 100px">Nº de Factura</th>
-                  <th style="width: 120px">Monto Total</th>
-                  <th style="width: 80px">Panel Compra</th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th style="width: 100px">Fecha Fc</th>
-                  <th style="width: 80px;">Tipo Proveedor</th>
-                  <th>Nombre del Proveedor</th>
-                  <th>CUIT</th>
-                  <th style="width: 100px">Nº de Factura</th>
-                  <th style="width: 120px">Monto Total</th>
-                  <th style="width: 80px">Panel Compra</th>
-                </tr>
-              </tfoot>
-            </table>
+          <div class="col-sm-3">
+            <label for="select">Filtar Compras por Mes</label>
+            <select id="mesSelect" class="form-control" onchange="uploadTable()">
+              <option id="Todos" value="" name="Todos">Todos</option>
+              <option id="Enero" value="01" name="Enero">Enero</option>
+              <option id="Febrero" value="02" name="Febrero">Febrero</option>
+              <option id="Marzo" value="03" name="Marzo">Marzo</option>
+              <option id="Abril" value="04" name="Abril">Abril</option>
+              <option id="Mayo" value="05" name="Mayo">Mayo</option>
+              <option id="Junio" value="06" name="Junio">Junio</option>
+              <option id="Julio" value="07" name="Julio">Julio</option>
+              <option id="Agosto" value="08" name="Agosto">Agosto</option>
+              <option id="Septiembre" value="09" name="Septiembre">Septiembre</option>
+              <option id="Octubre" value="10" name="Octubre">Octubre</option>
+              <option id="Noviembre" value="11" name="Noviembre">Noviembre</option>
+              <option id="Diciembre" value="12" name="Diciembre">Diciembre</option>
+            </select>
           </div>
-          <!-- /.card-body -->
         </div>
-        <!-- /.card -->
       </div>
     </div>
-    <!-- /.row (main row) -->
+    <!--  FIN Selector de mess -->
+    <div class="col-12">
+      <div class="card card-warning">
+        <div class="card-header">
+          <h3 class="card-title">Lista de Compras</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="card-refresh" data-source="/api/compras/list"
+              data-source-selector="#card-refresh-content" data-load-on-init="false"><i
+                class="fas fa-sync-alt"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+          <table class="table table-head-fixed text-nowrap" id="tablaCompras">
+            <thead>
+              <tr>
+                <th style="width: 80px">Fecha Fc</th>
+                <th style="width: 80px;">Tipo Proveedor</th>
+                <th>Nombre del Proveedor</th>
+                <th>CUIT</th>
+                <th style="width: 100px">Nº de Factura</th>
+                <th style="width: 120px">Monto Total</th>
+                <th style="width: 80px">Panel Compra</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th style="width: 100px">Fecha Fc</th>
+                <th style="width: 80px;">Tipo Proveedor</th>
+                <th>Nombre del Proveedor</th>
+                <th>CUIT</th>
+                <th style="width: 100px">Nº de Factura</th>
+                <th style="width: 120px">Monto Total</th>
+                <th style="width: 80px">Panel Compra</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+  <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
 </section>
 

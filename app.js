@@ -101,15 +101,17 @@ app.post("/sendMail", async (req, res) => {
       // send mail with defined transport object
       let info = await transporter.sendMail({
         from: `"${req.body.nombre}"  <${req.body.mail}>`, // sender address
-        to: "info@corralonbianchi.com.ar", // list of receivers
+        to: `info@corralonbianchi.com.ar, ${req.body.mail} `, // list of receivers
         subject: "Formulario de Contacto: " + req.body.nombre, // Subject line
         text: req.body.consulta, // plain text body
         html: `<h1>Formulario de Contacto</h1> 
         <br/>
-        <h3> Nombre: ${req.body.nombre} </h3>  
-        <h3> Telefono: ${req.body.telefono}</h3>  
-        <h3> Mail: ${req.body.mail} </h3> 
-        <h3> Consulta:</h3> <span> ${req.body.consulta}</span>   
+        <h3> Gracias por contactarte con nosotros </h3> 
+        <p> A la brevedad nos pondremos en contacto</p>
+        <h4> Nombre: ${req.body.nombre} </h3>  
+        <h4> Telefono: ${req.body.telefono}</h3>  
+        <h4> Mail: ${req.body.mail} </h3> 
+        <h4> Consulta:</h3> <span> ${req.body.consulta}</span>   
         `, // html body
       });
 

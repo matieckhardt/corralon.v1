@@ -76,7 +76,8 @@ const uploadTable = async (req, res) => {
     );
     const purchaseTaxes = purchasesTaxes.reduce(
       (a, { yearMonth, montoTotal }) => (
-        (a[yearMonth] = (a[yearMonth] || 0) + +montoTotal.$numberDecimal || 0),
+        (a[yearMonth] =
+          (a[yearMonth] || 0) + +montoTotal.$numberDecimal * -1 || 0),
         a
       ),
       {}

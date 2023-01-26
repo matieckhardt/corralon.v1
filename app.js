@@ -93,8 +93,8 @@ app.post("/sendMail", async (req, res) => {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-          user: "info@corralonbianchi.com.ar",
-          pass: "Dni38512917",
+          user: process.env.USER_MAIL,
+          pass: process.env.PASS_MAIL,
         },
       });
 

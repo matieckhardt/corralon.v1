@@ -97,14 +97,14 @@ app.post("/sendMail", async (req, res) => {
           pass: process.env.PASS_MAIL,
         },
       });
-
       // send mail with defined transport object
       let info = await transporter.sendMail({
         from: `"${req.body.nombre}"  <${req.body.mail}>`, // sender address
         to: `info@corralonbianchi.com.ar, ${req.body.mail} `, // list of receivers
         subject: "Formulario de Contacto: " + req.body.nombre, // Subject line
         text: req.body.consulta, // plain text body
-        html: `<h1>Formulario de Contacto</h1> 
+        html: `<h1>Formulario de Contacto</h1>
+        <img src="https://corralonbianchi.com.ar/img/home/logo.png" style="max-width: 200px;">
         <br/>
         <h3> Gracias por contactarte con nosotros </h3> 
         <p> A la brevedad nos pondremos en contacto</p>

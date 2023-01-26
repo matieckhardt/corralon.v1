@@ -13,6 +13,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const { info } = require("console");
 const { index } = require("./controllers/client.controller");
+const nodemailer = require("nodemailer");
 
 app.set("PORT", config.PORT || 3000);
 app.set("secret", config.SK);
@@ -76,6 +77,48 @@ app.get("/", async (req, res) => {
       headContent: "Home",
       layout: false,
     });
+  } catch (error) {
+    console.log("ups", error);
+  }
+});
+
+// node Mailer
+app.post("/sendMail", async (req, res) => {
+  try {
+    console.log(req.body);
+    async function main() {
+      // create reusable transporter object using the default SMTP transport
+      let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: "info@corralonbianchi.com.ar",
+          pass: "Dni38512917",
+        },
+      });
+
+      // send mail with defined transport object
+      let info = await transporter.sendMail({
+        from: `"${req.body.nombre}"  <${req.body.mail}>`, // sender address
+        to: "info@corralonbianchi.com.ar", // list of receivers
+        subject: "Formulario de Contacto: " + req.body.nombre, // Subject line
+        text: req.body.consulta, // plain text body
+        html: `<h1>Formulario de Contacto</h1> 
+        <br/>
+        <h3> Nombre: ${req.body.nombre} </h3>  
+        <h3> Telefono: ${req.body.telefono}</h3>  
+        <h3> Mail: ${req.body.mail} </h3> 
+        <h3> Consulta:</h3> <span> ${req.body.consulta}</span>   
+        `, // html body
+      });
+
+      console.log("Message sent: from: " + req.body.mail);
+      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+    }
+
+    main().catch(console.error);
+    return res.redirect("/");
   } catch (error) {
     console.log("ups", error);
   }

@@ -1,10 +1,9 @@
-
 <section class="contact" id="contact">
     <h2 class="text-white negrita">Dejanos tu consulta</h2>
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <form class="form">
+                <form class="form" action="/sendMail" method="POST">
                     <div class="form-group">
                         <label>
                             <h4>Nombre y Apellido</h4>
@@ -15,19 +14,19 @@
                         <label>
                             <h4>Mail</h4>
                         </label>
-                        <input class="form-control" type="email" name="nombre" placeholder="Ingrese su Email">
+                        <input class="form-control" type="email" name="mail" placeholder="Ingrese su Email">
                     </div>
                     <div class="form-group">
                         <label>
                             <h4>Telefono / Whatsapp </h4>
                         </label>
-                        <input class="form-control" type="text" name="nombre" placeholder="Ingrese su Telefono">
+                        <input class="form-control" type="text" name="telefono" placeholder="Ingrese su Telefono">
                     </div>
                     <div class="form-group">
                         <label>
                             <h4>Consulta </h4>
                         </label>
-                        <input class="form-control" type="text" name="nombre" placeholder="Consulta">
+                        <input class="form-control" type="text" name="consulta" placeholder="Consulta">
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>

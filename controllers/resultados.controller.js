@@ -12,13 +12,12 @@ const year = new Date().getFullYear();
 const anioMesRegex = `${year}-${month.toString().padStart(2, "0")}`;
 const anio = `${year.toString().padStart(2, "0")}`;
 
-// suma todo los totales de las ventas del mes
-
+// Saldo Inicial
 resultadosCtrl.totalVendidoMes = async (req, res) => {
   try {
     let ac = 0;
     const data = await Ventas.find({
-      fecha: { $regex: new RegExp(anio) },
+      fecha: { $regex: new RegExp(2022) },
     });
     const meses = data.map(({ fecha, precioTotal, presupuesto }) => ({
       Mes: new Date(fecha).toLocaleString("es-ar", { month: "short" }),
@@ -35,6 +34,7 @@ resultadosCtrl.totalVendidoMes = async (req, res) => {
       (a, { Mes, precioTotal }) => ((a[Mes] = (a[Mes] || 0) + +precioTotal), a),
       {}
     );
+    console.log(sumas);
     return sumas;
   } catch (error) {
     return res.status(404).json(error);

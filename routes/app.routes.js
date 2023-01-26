@@ -20,7 +20,8 @@ const comprobantesRoutes = require("./comprobantes.routes");
 const dashboardRoutes = require("./dashboard.routes");
 const resultadosRoutes = require("./resultados.routes");
 const authRoutes = require("./auth.routes");
-const summaryRoutes = require("./summary.routes");
+const reportsRoutes = require("./reports.routes");
+
 const { authMiddleware } = require("../middlewares/authMiddleware");
 
 router.get("/login", dashboardCtrl.login);
@@ -30,7 +31,7 @@ router.get("/login", dashboardCtrl.login);
 
 router.use(clientRoutes);
 router.use(usersRoutes);
-router.use(summaryRoutes);
+router.use(reportsRoutes);
 router.use(abmRoutes);
 router.use(authRoutes);
 router.use(proveedoresRoutes);

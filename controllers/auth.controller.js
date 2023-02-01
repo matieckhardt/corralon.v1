@@ -32,7 +32,7 @@ authCtrl.handleLogin = async (req, res, next) => {
     const token = getJsonWebToken(payload);
 
     setCookie(req, token);
-
+    console.log("/api/dashboard/" + year + "/" + month);
     return res.redirect("/api/dashboard/" + year + "/" + month);
   } catch (error) {
     console.log(error);

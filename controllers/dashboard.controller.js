@@ -330,19 +330,28 @@ const dashboardData = async (req, res) => {
   //// Data DASHBOARD
   try {
     const data = {
-      cementos: cementosVendidos[0].cantidad,
-      vendidoAño: totalVendido[0].totalVendido,
-      vendidoMes: totalVendidoMes[0].totalVendido,
-      clienteAño: mejoresClientes[0],
-      clienteMes: mejoresClientesMes[0],
-      proveedorAño: mejoresProveedores[0],
+      cementos: cementosVendidos[0].cantidad || { cementos: 0 },
+      vendidoAño: totalVendido[0].totalVendido || { clienteAño: 0 },
+      vendidoMes: totalVendidoMes[0].totalVendido || { vendidoMes: 0 },
+      clienteAño: mejoresClientes[0] || {
+        totalVendido: 0,
+        cliente: "No hay ventas",
+      },
+      clienteMes: mejoresClientesMes[0] || {
+        totalVendido: 0,
+        cliente: "No hay ventas",
+      },
+      proveedorAño: mejoresProveedores[0] || {
+        totalComprado: 0,
+        proveedor: "No hubo compras",
+      },
       proveedorMes: mejoresProveedoresMes[0] || {
         totalComprado: 0,
         proveedor: "No hubo compras",
       },
       compradoMes: totalCompradoMes[0] || { totalComprado: 0 },
-      compradoAño: totalComprado[0].totalComprado,
-      ranking,
+      compradoAño: totalComprado[0].totalComprado || { comprado: 0 },
+      ranking: ranking || { Nombre: "Vacio", Cantidad: 0 },
     };
     console.log(data);
     return data;

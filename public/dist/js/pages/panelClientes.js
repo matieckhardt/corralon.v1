@@ -74,10 +74,14 @@ const cuentaCorriente = async () => {
 };
 
 const evalCheque = (elem) => {
+  const recargo = document.getElementById("recargo");
+  const recargoContainer = document.getElementById("recargoContainer");
   comision.value = 0;
   calcularSubtotal();
   comision.setAttribute("disabled", "disabled");
   comisionNote.setAttribute("hidden", "hidden");
+  recargoContainer.setAttribute("hidden", "hidden");
+  recargo.setAttribute("disabled", "disabled");
   elem.value === "cheque"
     ? chequeForm.removeAttribute("hidden")
     : chequeForm.setAttribute("hidden", "hidden");
@@ -88,18 +92,31 @@ const evalCheque = (elem) => {
     ? FechaCh.removeAttribute("disabled")
     : FechaCh.setAttribute("disabled", "disabled");
   if (elem.value === "tarjeta") {
-    comision.removeAttribute("disabled");
+    // comision.removeAttribute("disabled");
     comisionNote.removeAttribute("hidden");
-    comision.value = parseFloat(precioTotal.value * 0.07).toFixed(2);
+    recargoContainer.removeAttribute("hidden");
+    recargo.removeAttribute("disabled");
+    recargo.value = "7";
+    onChangeRecargo();
     porcentajeForm.removeAttribute("hidden");
   }
   if (elem.value === "debito") {
-    comision.removeAttribute("disabled");
+    // comision.removeAttribute("disabled");
     comisionNote.removeAttribute("hidden");
-    comision.value = parseFloat(precioTotal.value * 0.03).toFixed(2);
+    recargoContainer.removeAttribute("hidden");
+    recargo.removeAttribute("disabled");
+    recargo.value = "3";
+    onChangeRecargo();
     porcentajeForm.removeAttribute("hidden");
   }
   calcularTotal();
+};
+
+const onChangeRecargo = () => {
+  const precioTotal = document.getElementById("precioTotal");
+  const recargo = document.getElementById("recargo");
+  comision.value =
+    parseFloat(precioTotal.value) * (parseFloat(recargo.value) / 100);
 };
 
 const evalChequeModal = (elem) => {
@@ -207,9 +224,18 @@ const manejarComprobante = (bool) => {
   bool
     ? comprobante.removeAttribute("disabled")
     : comprobante.setAttribute("disabled", "disabled");
+
+  const submitBtn = document.getElementById("btnVenta");
+  submitBtn.innerHTML = `<i class="fa fa-plus pr-2"></i>CREAR ${
+    bool ? "VENTA" : "PRESUPUESTO"
+  }`;
   bool
-    ? metodo.removeAttribute("disabled")
-    : metodo.setAttribute("disabled", "disabled");
+    ? submitBtn.classList.remove("bg-purple")
+    : submitBtn.classList.add("bg-purple");
+
+  // bool
+  //   ? metodo.removeAttribute("disabled")
+  //   : metodo.setAttribute("disabled", "disabled");
 };
 
 const manejarDescuento = (descuento) => {

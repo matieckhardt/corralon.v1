@@ -3,6 +3,8 @@ const Compras = require("../models/Compras");
 const Ventas = require("../models/Ventas");
 const Comprobantes = require("../models/Comprobantes");
 const today = new Date();
+const fechaInicial = "Sun, 01 Jan 2023 03:00:00 GMT";
+const fechaCiere = "Wed, 01 Mar 2023 03:00:00 GMT";
 
 reportsCtrl.reports = async (req, res) => {
   try {
@@ -18,7 +20,7 @@ reportsCtrl.openingBalance = async (req, res) => {
       {
         $match: {
           createdAt: {
-            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
+            $gte: new Date(fechaInicial),
             $lt: new Date(today),
           },
           presupuesto: false,
@@ -96,6 +98,7 @@ reportsCtrl.openingBalance = async (req, res) => {
         },
       },
     ]);
+    console.log(data);
     return res.json(data);
   } catch (error) {
     return res.status(404).json(error);
@@ -108,8 +111,8 @@ reportsCtrl.purchasesProd = async (req, res) => {
       {
         $match: {
           createdAt: {
-            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
-            $lt: new Date("Wed, 01 Feb 2023 03:00:00 GMT"),
+            $gte: new Date(fechaInicial),
+            $lt: new Date(fechaCiere),
           },
           tipoProveedor: "Productivo",
         },
@@ -201,8 +204,8 @@ reportsCtrl.purchasesNoProd = async (req, res) => {
       {
         $match: {
           createdAt: {
-            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
-            $lt: new Date("Wed, 01 Feb 2023 03:00:00 GMT"),
+            $gte: new Date(fechaInicial),
+            $lt: new Date(fechaCiere),
           },
           tipoProveedor: {
             $regex: "No Productivo",
@@ -296,8 +299,8 @@ reportsCtrl.purchasesTaxes = async (req, res) => {
       {
         $match: {
           createdAt: {
-            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
-            $lt: new Date("Wed, 01 Feb 2023 03:00:00 GMT"),
+            $gte: new Date(fechaInicial),
+            $lt: new Date(fechaCiere),
           },
           tipoProveedor: {
             $regex: "Impuestos",
@@ -391,8 +394,8 @@ reportsCtrl.discountMonth = async (req, res) => {
       {
         $match: {
           createdAt: {
-            $gte: new Date("Sat, 01 Jan 2022 03:00:00 GMT"),
-            $lt: new Date("Wed, 01 Feb 2023 03:00:00 GMT"),
+            $gte: new Date(fechaInicial),
+            $lt: new Date(fechaCiere),
           },
         },
       },

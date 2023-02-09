@@ -6,7 +6,7 @@ const uploadTable = async (req, res) => {
   try {
     // saldo inicial
 
-    const saldoIni = [{ yearMonth: "2022-1", saldoTotal: 0 }];
+    const saldoIni = [{ yearMonth: "2023-1", saldoTotal: 0 }];
     const saldo = saldoIni.reduce(
       (a, { yearMonth, saldoTotal }) => (
         (a[yearMonth] = (a[yearMonth] || 0) + +saldoTotal), a
@@ -14,6 +14,7 @@ const uploadTable = async (req, res) => {
       {}
     );
     saldo.name = "8 Otros";
+    console.log(saldo);
 
     // Ventas
     const ventas = await fetch("/api/reports/openingBalance").then((response) =>
@@ -34,7 +35,8 @@ const uploadTable = async (req, res) => {
     );
     const discount = bonif.reduce(
       (a, { yearMonth, descuentos }) => (
-        (a[yearMonth] = (a[yearMonth] || 0) + +descuentos.$numberDecimal), a
+        (a[yearMonth] = (a[yearMonth] || 0) + +descuentos.$numberDecimal * -1),
+        a
       ),
       {}
     );
@@ -108,51 +110,51 @@ const uploadTable = async (req, res) => {
             data: "name",
           },
           {
-            data: "2022-1",
+            data: "2023-1",
             defaultContent: "0",
           },
           {
-            data: "2022-2",
+            data: "2023-2",
             defaultContent: "0",
           },
           {
-            data: "2022-3",
+            data: "2023-3",
             defaultContent: "0",
           },
           {
-            data: "2022-4",
+            data: "2023-4",
             defaultContent: "0",
           },
           {
-            data: "2022-5",
+            data: "2023-5",
             defaultContent: "0",
           },
           {
-            data: "2022-6",
+            data: "2023-6",
             defaultContent: "0",
           },
           {
-            data: "2022-7",
+            data: "2023-7",
             defaultContent: "0",
           },
           {
-            data: "2022-8",
+            data: "2023-8",
             defaultContent: "0",
           },
           {
-            data: "2022-9",
+            data: "2023-9",
             defaultContent: "0",
           },
           {
-            data: "2022-10",
+            data: "2023-10",
             defaultContent: "0",
           },
           {
-            data: "2022-11",
+            data: "2023-11",
             defaultContent: "0",
           },
           {
-            data: "2022-12",
+            data: "2023-12",
             defaultContent: "0",
           },
         ],
@@ -180,7 +182,7 @@ const uploadTable = async (req, res) => {
           jQuery(api.column(2).header()).html(
             "$" + parseFloat(total1).toLocaleString("es-ar")
           );
-          saldo["2022-2"] = total1;
+          saldo["2023-2"] = total1;
           ///
           for (let i = 2; i < 12; i++) {
             var total = api
@@ -189,7 +191,7 @@ const uploadTable = async (req, res) => {
               .reduce(function (a, b) {
                 return intVal(a) + intVal(b);
               }, 0);
-            saldo["2022-" + (i + 1)] = total;
+            saldo["2023-" + (i + 1)] = total;
             jQuery(api.column(i).footer()).html(
               "$" + parseFloat(total).toLocaleString("es-ar")
             );
@@ -202,6 +204,15 @@ const uploadTable = async (req, res) => {
     };
 
     table();
+
+    const titulo = document.getElementById("theadMes");
+    const sIni = document.getElementsByTagName("thead");
+
+    const tituloClone = titulo.cloneNode(true);
+    const sIniClone = sIni[0].cloneNode(true);
+
+    sIni[0].replaceWith(tituloClone);
+    titulo.replaceWith(sIniClone);
   } catch (error) {
     return res.status(404).json(error);
   }

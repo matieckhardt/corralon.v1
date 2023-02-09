@@ -8,6 +8,15 @@ main {
   padding: 40px;
   background-color: #f5f5f5;
 }
+#theadMes {
+  color: rgb(255, 255, 255);
+  background-color: #495057;
+}
+.thMes {
+  background: #495057 !important; 
+    background-color: #495057;
+
+}
 #totales{
   color: rgb(223, 208, 89);
   background-color: #323232;

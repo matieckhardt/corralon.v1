@@ -6,7 +6,7 @@ const uploadTable = async (req, res) => {
   try {
     // saldo inicial
 
-    const saldoIni = [{ yearMonth: "2023-1", saldoTotal: 0 }];
+    const saldoIni = [{ yearMonth: "2023-1", saldoTotal: -22379448.5 }];
     const saldo = saldoIni.reduce(
       (a, { yearMonth, saldoTotal }) => (
         (a[yearMonth] = (a[yearMonth] || 0) + +saldoTotal), a
@@ -182,7 +182,7 @@ const uploadTable = async (req, res) => {
           jQuery(api.column(2).header()).html(
             "$" + parseFloat(total1).toLocaleString("es-ar")
           );
-          saldo["2023-2"] = total1;
+          saldo["2023-3"] = total1;
           ///
           for (let i = 2; i < 12; i++) {
             var total = api

@@ -26,8 +26,9 @@
             <div class='form-group col-4'>
               <label for='metodoDePago'>Método de Pago</label>
               <select type='text' class='form-control' id='metodoDePago' onchange='evalCheque(this)'
-                name="metodoDePago">
+                name="metodoDePago">|
                 <option value='efectivo'>Efectivo</option>
+                <option value='transferencia'>Transferencia</option>
                 <option value='cheque'>Cheque</option>
                 <option value='ctacte'>Cuenta Corriente</option>
                 <option value='tarjeta'>Tarjeta de Débito/Crédito</option>
@@ -39,29 +40,14 @@
                 <div class='form-group col-6'>
                   <label>Número Cheque</label>
                   <div class='input-group'>
-                    <input
-                      disabled
-                      type='number'
-                      step='1'
-                      class='form-control'
-                      name='NumCheque'
-                      id='NumCheque'
-                      required
-                    />
+                    <input disabled type='number' step='1' class='form-control' name='NumCheque' id='NumCheque'
+                      required />
                   </div>
                 </div>
                 <div class='form-group col-6'>
                   <label>Fecha Cheque</label>
-                  <input
-                    disabled
-                    type='date'
-                    class='form-control datetimepicker-input'
-                    data-target='#timepicker'
-                    name='FechaCheque'
-                    value=''
-                    id='FechaCheque'
-                    required
-                  />
+                  <input disabled type='date' class='form-control datetimepicker-input' data-target='#timepicker'
+                    name='FechaCheque' value='' id='FechaCheque' required />
                 </div>
               </div>
             </div>
@@ -74,17 +60,10 @@
             </div>
             <div class="form-group col-sm-6 col-md-3">
               <label for="monto">Monto</label>
-              <input type="number" class="form-control" id="monto" placeholder="monto" name="monto" />              
+              <input type="number" class="form-control" id="monto" placeholder="monto" name="monto" />
               <span class='text-danger' id='comisionNote' hidden>
                 comision:
-                <input
-                  class='text-danger border-0'
-                  type='number'
-                  disabled
-                  hidden
-                  id='comision'
-                  value='0'
-                />
+                <input class='text-danger border-0' type='number' disabled hidden id='comision' value='0' />
               </span>
             </div>
             <div class="form-group col-sm-6 col-md-4">

@@ -4,7 +4,7 @@ const Ventas = require("../models/Ventas");
 const Comprobantes = require("../models/Comprobantes");
 const today = new Date();
 const fechaInicial = "Sun, 01 Jan 2023 03:00:00 GMT";
-const fechaCiere = "Wed, 01 Mar 2023 03:00:00 GMT";
+const fechaCiere = "Wed, 01 Dec 2023 03:00:00 GMT";
 
 reportsCtrl.reports = async (req, res) => {
   try {

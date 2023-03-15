@@ -27,9 +27,9 @@
       <div class="small-box bg-info" style="min-height:133px">
         <div class="inner">
 
-          <h3 id="cementoMes">{{Valores.cementos}}</h3>
+          <h3 id="cementoMes">{{Valores.indiceCementos}}</h3>
           <span id="mes"></span>
-          <p>Cementos Vendidos</p>
+          <p>Indice Cementos | Cementos Vendidos: {{Valores.cementos}}</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag" style="top:50px"></i>
@@ -266,7 +266,7 @@
         type: "doughnut",
         data: {
 
-          labels: ["efectivo", "ctacte", "tarjeta", "cheque", "debito"],
+          labels: ["cheque", "ctacte", "debito", "efectivo", "tarjeta"],
 
           datasets: [
             {

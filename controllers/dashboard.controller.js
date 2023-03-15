@@ -4,6 +4,7 @@ const Compras = require("../models/Compras");
 const Pagos = require("../models/Pagos");
 const Ventas = require("../models/Ventas");
 const filterYearMonth = require("../helpers/filterYearMonth");
+const Material = require("../models/Materiales");
 
 dashboardCtrl.login = async (req, res) => {
   res.render("login", { layout: "login" });
@@ -327,9 +328,28 @@ const dashboardData = async (req, res) => {
     },
   ]);
 
+  const cementoPrecio = await Material.aggregate([
+    {
+      $match: {
+        nombre: "Cemento Avellaneda",
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        precio: 1,
+      },
+    },
+  ]);
+
+  console.log(cementoPrecio[0].precio);
+  console.log(totalVendidoMes[0].totalVendido);
+  const indice = totalVendidoMes[0].totalVendido / cementoPrecio[0].precio;
+
   //// Data DASHBOARD
   try {
     const data = {
+      indiceCementos: indice.toLocaleString("es-AR") || { indiceCementos: 0 },
       cementos: cementosVendidos[0].cantidad || { cementos: 0 },
       vendidoAño: totalVendido[0].totalVendido || { clienteAño: 0 },
       vendidoMes: totalVendidoMes[0].totalVendido || { vendidoMes: 0 },
@@ -398,9 +418,13 @@ dashboardCtrl.tiposCompro = async (req, res) => {
         },
       },
     ]);
-
     const comprobantes = tiposCompro.map(({ cantidad }) => cantidad);
-    return res.json(comprobantes);
+    const comproArray = comprobantes;
+    for (let i = 0; i < comprobantes.length; i++)
+      if (comprobantes.length < 4) {
+        comproArray.push(0);
+      }
+    return res.json(comproArray);
   } catch (error) {
     return res.status(404).json(error);
   }
@@ -430,10 +454,21 @@ dashboardCtrl.metodoPago = async (req, res) => {
         },
       },
     ]);
+    console.log(
+      "pagos",
+      pagos.sort((a, b) => a.metodoPago.localeCompare(b.metodoPago))
+    );
+    const pagosSorted = pagos.sort((a, b) =>
+      a.metodoPago.localeCompare(b.metodoPago)
+    );
 
-    const metodoPago = pagos.map(({ cantidad }) => cantidad);
-
-    return res.json(metodoPago);
+    const metodoPago = pagosSorted.map(({ cantidad }) => cantidad);
+    const pagosArray = metodoPago;
+    for (let i = 0; i < metodoPago.length; i++)
+      if (metodoPago.length < 4) {
+        comproArray.push(0);
+      }
+    return res.json(pagosArray);
   } catch (error) {
     return res.status(404).json(error);
   }

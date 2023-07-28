@@ -35,6 +35,7 @@ const dashboardData = async (req, res) => {
       },
     },
   ]);
+  console.log("totalVendido", totalVendido);
 
   //total Vendido MES
 
@@ -57,7 +58,7 @@ const dashboardData = async (req, res) => {
       },
     },
   ]);
-
+  console.log("totalVendidoMes", totalVendidoMes);
   // mejores clientes
 
   const mejoresClientes = await Ventas.aggregate([
@@ -97,7 +98,7 @@ const dashboardData = async (req, res) => {
       },
     },
   ]);
-
+  console.log("mejoresClientes", mejoresClientes);
   // Mejores clientes Mes
 
   const mejoresClientesMes = await Ventas.aggregate([
@@ -137,7 +138,7 @@ const dashboardData = async (req, res) => {
       },
     },
   ]);
-
+  console.log("mejoresClientes", mejoresClientes);
   //////////
 
   const totalCompradoMes = await Compras.aggregate([
@@ -160,6 +161,7 @@ const dashboardData = async (req, res) => {
     },
   ]);
   ////////
+  console.log("totalCompradoMes", totalCompradoMes);
 
   const totalComprado = await Compras.aggregate([
     {
@@ -182,6 +184,7 @@ const dashboardData = async (req, res) => {
   ]);
 
   ///////
+  console.log("totalComprado", totalComprado);
 
   const mejoresProveedores = await Compras.aggregate([
     {
@@ -216,6 +219,7 @@ const dashboardData = async (req, res) => {
   ]);
 
   //////
+  console.log("mejoresProveedores", mejoresProveedores);
 
   const mejoresProveedoresMes = await Compras.aggregate([
     {
@@ -248,7 +252,7 @@ const dashboardData = async (req, res) => {
       },
     },
   ]);
-
+  console.log("mejoresProveedoresMes", mejoresProveedoresMes);
   //////// RANKING
 
   const bestProd = await Ventas.find({
@@ -278,11 +282,17 @@ const dashboardData = async (req, res) => {
   );
   const ranking = arrayAux.slice(0, 5);
 
+  console.log("ranking", ranking);
+
   const cementosVendidos = await Ventas.aggregate([
     {
       $match: { ...filterYearMonth(year, month), presupuesto: false },
     },
     {
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
       $project: {
         _id: 0,
         "materialesVendidos.mercaderia": 1,
@@ -290,43 +300,57 @@ const dashboardData = async (req, res) => {
       },
     },
     {
+      /**
+       * path: Path to the array field.
+       * includeArrayIndex: Optional name for index.
+       * preserveNullAndEmptyArrays: Optional
+       *   toggle to unwind null and empty values.
+       */
       $unwind: {
         path: "$materialesVendidos",
         preserveNullAndEmptyArrays: true,
       },
     },
     {
+      $match: {
+        "materialesVendidos.mercaderia": {
+          $regex: "Cemento Avellaneda",
+        },
+      },
+    },
+    {
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
       $group: {
         _id: "$materialesVendidos.mercaderia",
         cantidad: {
           $sum: {
-            $toDecimal: "$materialesVendidos.cantidad",
+            $convert: {
+              input: "$materialesVendidos.cantidad",
+              to: "decimal",
+              onError: 0,
+              // Set a default value of 0 on conversion failure
+              onNull: 0, // Handle null values as well and set them to 0
+            },
           },
         },
       },
     },
     {
-      $match: {
-        _id: {
-          $regex: new RegExp("emento"),
-        },
-      },
-    },
-    {
-      $group: {
-        _id: "cementosVendidos",
-        cantidad: {
-          $sum: "$cantidad",
-        },
-      },
-    },
-    {
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
       $project: {
         _id: 0,
         cantidad: 1,
       },
     },
   ]);
+
+  console.log("cementosVendidos", `${cementosVendidos[0].cantidad}`);
 
   const cementoPrecio = await Material.aggregate([
     {
@@ -341,16 +365,18 @@ const dashboardData = async (req, res) => {
       },
     },
   ]);
+  console.log("cementosVendidos", `${cementosVendidos[0].cantidad}`);
 
   console.log(cementoPrecio[0].precio);
   console.log(totalVendidoMes[0].totalVendido);
   const indice = totalVendidoMes[0].totalVendido / cementoPrecio[0].precio;
+  console.log("indice", indice);
 
   //// Data DASHBOARD
   try {
     const data = {
       indiceCementos: indice.toLocaleString("es-AR") || { indiceCementos: 0 },
-      cementos: cementosVendidos[0].cantidad || { cementos: 0 },
+      cementos: `${cementosVendidos[0].cantidad}` || { cementos: 0 },
       vendidoAño: totalVendido[0].totalVendido || { clienteAño: 0 },
       vendidoMes: totalVendidoMes[0].totalVendido || { vendidoMes: 0 },
       clienteAño: mejoresClientes[0] || {

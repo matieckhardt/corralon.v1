@@ -21,13 +21,12 @@ mateCtrl.getMaterial = async (req, res) => {
 
 mateCtrl.createMaterial = async (req, res) => {
   try {
-    const { nombre, precio, rubro, stock, } = req.body;
+    const { nombre, precio, rubro, stock } = req.body;
     const mate = new Material({
       nombre,
-	  precio,
+      precio,
       rubro,
       stock,
-
     });
     await mate.save();
     return false;
@@ -39,7 +38,7 @@ mateCtrl.createMaterial = async (req, res) => {
 mateCtrl.editMaterial = async (req, res) => {
   try {
     const materialEdited = await Material.findByIdAndUpdate(
-      req.params.id,
+      req.params._id,
       req.body,
       {
         new: true,

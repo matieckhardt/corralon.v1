@@ -574,6 +574,15 @@ main {
     font-weight: 600;
   }
 
+  #comprobante .mensajeFc {
+    display: block;
+    position: absolute;
+    text-align: center;
+    top: 1320px;
+    left: 150px;
+    font-size: 15px;
+    font-weight: 400;
+  }
   #comprobante .subtotal {
     display: block;
     position: absolute;

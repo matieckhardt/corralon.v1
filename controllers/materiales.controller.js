@@ -38,7 +38,7 @@ mateCtrl.createMaterial = async (req, res) => {
 mateCtrl.editMaterial = async (req, res) => {
   try {
     const materialEdited = await Material.findByIdAndUpdate(
-      req.params._id,
+      req.params.id,
       req.body,
       {
         new: true,

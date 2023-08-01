@@ -13,30 +13,26 @@ main {
   background-color: #495057;
 }
 .thMes {
-  background: #495057 !important; 
-    background-color: #495057;
-
+  background: #495057 !important;
+  background-color: #495057;
 }
-#totales{
+#totales {
   color: rgb(223, 208, 89);
   background-color: #323232;
 }
-#resultados{
+#resultados {
   width: 70vw;
-  margin-left:10px;
+  margin-left: 10px;
   margin-right: 10px;
 }
 #yearMonth {
- 
-text-align: right;
-display: block;
-text-transform: uppercase;
-font-weight: 100;
-
+  text-align: right;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 100;
 }
 #date {
-    max-width: 151px;
-;
+  max-width: 151px;
 }
 
 .content-login {
@@ -177,7 +173,6 @@ font-weight: 100;
   top: 195px;
   left: 572px;
   font-size: 15px;
-  
 }
 #comprobante .nro-comprobante {
   display: block;
@@ -263,6 +258,15 @@ font-weight: 100;
   font-size: 20px;
   font-weight: 600;
 }
+#comprobante .mensajeFc {
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: 800px;
+  left: 90px;
+  font-size: 10px;
+  font-weight: 400;
+}
 #comprobante .subtotal {
   display: block;
   position: absolute;
@@ -316,7 +320,7 @@ font-weight: 100;
   margin-bottom: 30px;
   font-size: 20px;
   text-align: left;
-	 text-transform: capitalize; 
+  text-transform: capitalize;
 }
 #pagebreak {
   text-align: center;

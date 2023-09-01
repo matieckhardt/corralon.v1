@@ -10,6 +10,66 @@ mateCtrl.listMaterial = async (req, res) => {
 
   res.json(mateList.sort((a, b) => a.nombre.localeCompare(b.nombre)));
 };
+mateCtrl.listMigra = async (req, res) => {
+  const mateList = await Material.aggregate([
+    {
+      $lookup:
+        /**
+         * from: The target collection.
+         * localField: The local join field.
+         * foreignField: The target join field.
+         * as: The name for the results.
+         * pipeline: Optional pipeline to run on the foreign collection.
+         * let: Optional variables to use in the pipeline field stages.
+         */
+        {
+          from: "industries",
+          localField: "rubro",
+          foreignField: "name",
+          as: "industry",
+        },
+    },
+    {
+      $project:
+        /**
+         * specifications: The fields to
+         *   include or exclude.
+         */
+        {
+          name: "$nombre",
+          vatMultiplier: {
+            $toDecimal: "0.21",
+          },
+          vat: {
+            $toDecimal: "21.00",
+          },
+          price: {
+            $toDecimal: "$precio",
+          },
+          netPrice: {
+            $round: [
+              {
+                $divide: [
+                  {
+                    $toDecimal: "$precio",
+                  },
+                  {
+                    $toDecimal: "1.21",
+                  },
+                ],
+              },
+              2,
+            ],
+          },
+          industry: {
+            $arrayElemAt: ["$industry", 0],
+          },
+        },
+    },
+  ]);
+
+  res.json(mateList);
+};
 
 mateCtrl.getMaterial = async (req, res) => {
   const { id } = req.params;

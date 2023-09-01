@@ -61,8 +61,21 @@ mateCtrl.listMigra = async (req, res) => {
               2,
             ],
           },
+          priceList: "SI",
           industry: {
-            $arrayElemAt: ["$industry", 0],
+            $cond: {
+              if: {
+                $and: [
+                  { $eq: [{ $type: "$industry" }, "array"] },
+                  { $ne: [{ $size: "$industry" }, 0] },
+                ],
+              },
+              then: { $arrayElemAt: ["$industry", 0] },
+              else: {
+                name: "Sin Rubro",
+                category: "Sin Categoria",
+              },
+            },
           },
         },
     },

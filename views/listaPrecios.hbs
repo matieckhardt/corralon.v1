@@ -133,40 +133,44 @@
 
     </div>
     <h6 id="pagebreak">Pagina 2 </h6>
-    <div class="container fluid grid" id="grid3">
-        <!-- Card Hierros -->
-        <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
-            <div class="widget-user-header bg-warning">
-                <h3 class="widget-user-username">Hierros</h3>
-            </div>
-            {{#each Precios.Hierros}}
-            <div class="card-footer p-0">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <p href="#" class="list-corra">
-                            {{nombre}} <span class="float-right badge ">{{precio}}</span>
-                        </p>
-                    </li>
+    <div class="datosCorra2">
+        <img src="../img/home/logo.png" style="max-height: 100px; padding-bottom:15px" alt="" />
 
-                </ul>
-            </div> {{/each}}
-        </div>
-        <!-- Card Piedra -->
-        <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
-            <div class="widget-user-header bg-warning">
-                <h3 class="widget-user-username">Piedra</h3>
-            </div>
-            {{#each Precios.Piedra}}
-            <div class="card-footer p-0">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <p href="#" class="list-corra">
-                            {{nombre}} <span class="float-right badge ">{{precio}}</span>
-                        </p>
-                    </li>
+        <div class="container fluid grid" id="grid3">
+            <!-- Card Hierros -->
+            <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+                <div class="widget-user-header bg-warning">
+                    <h3 class="widget-user-username">Hierros</h3>
+                </div>
+                {{#each Precios.Hierros}}
+                <div class="card-footer p-0">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <p href="#" class="list-corra">
+                                {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                            </p>
+                        </li>
 
-                </ul>
-            </div> {{/each}}
+                    </ul>
+                </div> {{/each}}
+            </div>
+            <!-- Card Piedra -->
+            <div class="card card-widget widget-user-2 shadow-sm grid-item" style="min-width: 400px">
+                <div class="widget-user-header bg-warning">
+                    <h3 class="widget-user-username">Piedra</h3>
+                </div>
+                {{#each Precios.Piedra}}
+                <div class="card-footer p-0">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <p href="#" class="list-corra">
+                                {{nombre}} <span class="float-right badge ">{{precio}}</span>
+                            </p>
+                        </li>
+
+                    </ul>
+                </div> {{/each}}
+            </div>
         </div>
     </div>
     <h6 id="pagebreak">Pagina 3 </h6>

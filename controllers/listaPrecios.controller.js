@@ -26,6 +26,9 @@ lpreCtrl.index = async (req, res) => {
   const Hierros = mateSort.filter(function (element) {
     return element.rubro === "Hierros";
   });
+  const Piedra = mateSort.filter(function (element) {
+    return element.rubro === "Piedra";
+  });
   const Otros = mateSort.filter(function (element) {
     return element.rubro === "otros";
   });
@@ -36,6 +39,7 @@ lpreCtrl.index = async (req, res) => {
     Caños,
     Vigas,
     Hidrofugos,
+    Piedra,
     Hierros,
     Otros,
   };

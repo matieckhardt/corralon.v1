@@ -886,11 +886,13 @@ migraCtrl.acopiosMigra = async (req, res) => {
             in: {
               date: "$fechaRetiro",
               name: "$$material.mercaderia",
-              withdrawn: "$$material.cantidadRetirada",
+              withdrawn: {
+                $ifNull: ["$$material.cantidadRetirada", 0],
+              },
               stored: {
                 $sum: [
-                  "$$material.cantidadRetirada",
-                  "$$material.cantidadFaltante",
+                  { $ifNull: ["$$material.cantidadRetirada", 0] },
+                  { $ifNull: ["$$material.cantidadFaltante", 0] },
                 ],
               },
             },
@@ -923,16 +925,11 @@ migraCtrl.acopiosMigra = async (req, res) => {
       },
     },
     {
-      $addFields:
-        /**
-         * newField: The new field name.
-         * expression: The new field expression.
-         */
-        {
-          materials: {
-            $arrayElemAt: ["$materials", 0],
-          },
+      $addFields: {
+        materials: {
+          $arrayElemAt: ["$materials", 0],
         },
+      },
     },
   ]);
   const withdrawals = await Acopio.aggregate([
